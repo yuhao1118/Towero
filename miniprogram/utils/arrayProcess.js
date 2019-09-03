@@ -12,17 +12,23 @@ function getEventYears(eventKeyArray) {
     var yearNum = parseInt(yearStr);
     eventYears.push(yearNum); // 截取前4位年份，添加到eventsYears
   }
+  return uniqueArray(eventYears).sort(yearSort);
+}
+
+// 数组去重函数
+// arr          -- 要去重的数组
+function uniqueArray(arr) {
   // 存放最终结果
   var res = [];
-  for (var i in eventYears) {
+  for (var i in arr) {
     // 遍历数组元素
-    if (res.indexOf(eventYears[i]) == -1 && eventYears[i] != null) {
+    if (res.indexOf(arr[i]) == -1 && arr[i] != null) {
       // 如果结果数组不存在该元素则保存
-      res.push(eventYears[i]);
+      res.push(arr[i]);
     }
   }
-  // 返回去重后的数组
-  return res.sort(yearSort);
+
+  return res;
 }
 
 // 年份从大到小排序函数
@@ -30,7 +36,23 @@ function yearSort(x, y) {
   return y - x;
 }
 
+// 比赛日期从小到大排序
+function dateSort(x, y) {
+  var dateX;
+  var dateY;
+  if (x.hasOwnProperty('start_date')) {
+    dateX = new Date(x.start_date);
+  }
+
+  if (y.hasOwnProperty('start_date')) {
+    dateY = new Date(y.start_date);
+  }
+
+  return dateX && dateY ? dateX - dateY : 0;
+}
+
 module.exports = {
   getEventYears: getEventYears,
-  yearSort: yearSort
+  yearSort: yearSort,
+  dateSort: dateSort
 };

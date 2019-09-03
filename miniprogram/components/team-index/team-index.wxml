@@ -1,13 +1,14 @@
 <view class="list">
     <!-- 队伍信息简介 -->
     <van-cell-group>
-        <van-cell clickable="{{true}}" size="large" title="Skoll x Atom" label="Team 6766"/>
-        <van-cell clickable="{{true}}" size="large" icon="location" label="Shenzhen, Guangdong, China" />
-        <van-cell clickable="{{true}}" size="large" icon="label" label="Atom Creative Town & Atom Robot Education" />
-        <van-cell clickable="{{true}}" size="large" icon="clock" label="{{selectedYear}}" is-link  arrow-direction="down" bind:click="onYearCellClick" />
+        <van-cell wx:if="{{teamInfo.nickname && teamInfo.team_number}}" clickable="{{true}}" size="large" title="{{teamInfo.nickname}}" label="Team {{teamInfo.team_number}}" />
+        <van-cell wx:if="{{teamInfo.rookie_year}}" clickable="{{true}}" size="large" label="Rookie Year" value="{{teamInfo.rookie_year}}" />
+        <van-cell wx:if="{{teamInfo.city && teamInfo.state_prov && teamInfo.country}}" clickable="{{true}}" size="large" icon="location" label="{{teamInfo.city}}, {{teamInfo.state_prov}}, {{teamInfo.country}}" />
+        <van-cell wx:if="{{teamInfo.name}}" clickable="{{true}}" size="large" icon="label" label="{{teamInfo.name}}" />
+        <van-cell wx:if="{{eventYears.length > 0}}" clickable="{{true}}" size="large" icon="clock" label="{{selectedYear}}" is-link arrow-direction="down" bind:click="onYearCellClick" />
     </van-cell-group>
     <!-- 参赛年份选择弹出层 -->
     <van-popup show="{{ yearCellClick }}" position="bottom" bind:close="onPopUpClose">
-        <van-picker loading="{{yearArray==null || yearArray.length == 0}}" columns="{{ yearArray }}" default-index="{{ 0 }}" bind:change="onPickerChange" />
+        <van-picker toolbar-class="picker-color" show-toolbar loading="{{eventYears==null || eventYears.length == 0}}" columns="{{ eventYears }}" default-index="{{ 0 }}" bind:cancel="onPopUpClose" bind:confirm="onPickerConfirm" />
     </van-popup>
 </view>

@@ -1,5 +1,5 @@
 /**app.wxss**/
-@import "/miniprogram_npm/vant-weapp/common/index.wxss";
+@import '/miniprogram_npm/vant-weapp/common/index.wxss';
 
 .container {
   display: flex;
@@ -19,7 +19,7 @@
 }
 
 .tab-margin {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 page {
@@ -27,4 +27,8 @@ page {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+
+van-tabs {
+  width: 750rpx;
 }

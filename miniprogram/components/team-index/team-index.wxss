@@ -1,1 +1,5 @@
 @import "/app.wxss";
+
+.picker-color {
+    color: #3f51b5;
+}

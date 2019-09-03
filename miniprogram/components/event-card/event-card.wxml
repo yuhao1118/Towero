@@ -1,22 +1,14 @@
-<view class="list" hover-class="hover" hover-stay-time="50">
-    <van-row>
-        <!-- 赛事信息 -->
-        <van-col span="21">
-            <view class="event-container">
-                <view class="event-title">West Central Week 0</view>
-                <view class="location-date-container">
-                    <text class="location">Willmar MN USA</text>
-                    <text class="date">Feb 16 to Feb 16, 2019</text>
-                </view>
+<view class="list">
+    <van-cell wx:if="{{eventInfo.name}}" bind:click="onClick" size="large" use-label-slot is-link clickable>
+        <view slot="title">
+            <text class="event-title">{{eventInfo.name}}</text>
+        </view>
+        
+        <view slot="label">
+            <view class="location-date-container">
+                <text class="location">{{eventInfo.city}}, {{eventInfo.state_prov}}, {{eventInfo.country}}</text>
+                <text class="date">{{eventInfo.start_date_str}} to {{eventInfo.end_date_str}}, {{eventInfo.year}}</text>
             </view>
-        </van-col>
-        <!-- 最右侧箭头 -->
-        <van-col span="3">
-            <view class="arrow">
-                <van-icon name="arrow" size="20px" color="#9e9e9e" />
-            </view>
-        </van-col>
-        <!-- 底部框线 -->
-        <view class="van-hairline--bottom"></view>
-    </van-row>
+        </view>
+    </van-cell>
 </view>

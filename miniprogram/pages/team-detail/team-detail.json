@@ -2,7 +2,6 @@
   "usingComponents": {
     "team-index": "/components/team-index/team-index",
     "event-card": "/components/event-card/event-card",
-    "title-bar": "/components/title-bar/title-bar",
     "van-tab": "/miniprogram_npm/vant-weapp/tab/index",
     "van-tabs": "/miniprogram_npm/vant-weapp/tabs/index"
   }

@@ -1,6 +1,9 @@
 <!-- index.wxml -->
 <view class="container list">
-  <button bind:tap="onTeamDetail">Jump to team-detail</button>
-  <button bind:tap="onEventDetail">Jump to event-detail</button>
-  <button bind:tap="onTeamEvent">Jump to team-event</button>
+    <view style="height: 50px; background-color: #eee">
+        <input placeholder="Team Number: " bind:input="onTeamNumberInput" />
+    </view>
+    <button bind:tap="onTeamDetail">Jump to team-detail</button>
+    <button bind:tap="onEventDetail">Jump to event-detail</button>
+    <button bind:tap="onTeamEvent">Jump to team-event</button>
 </view>

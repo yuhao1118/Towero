@@ -12,8 +12,6 @@ import {
   teamYearEvent
 } from "/utils";
 
-var app = getApp();
-
 /* API 列表 */
 // 1. /team/{team_key}                          通过team_key查询队伍信息
 // 2. /team/{team_key}/events/keys              通过team_key查询所有event_key
@@ -34,8 +32,8 @@ Page({
   // 生命周期函数--监听页面加载
   onLoad: function(options) {
     linkParam(options, this); //   保存跳转参数
-    teamInfo(app, this);
-    eventYears(app, this);
+    teamInfo(this);
+    eventYears(this);
   },
 
   // 切换Tab事件
@@ -43,10 +41,19 @@ Page({
     tabChange(event, this); //   刷新tab切换数据
   },
 
+  // 点击event-card事件，自动返回eventKey
+  onEventCardClick: function(event){
+      var eventKey = event.detail
+      var pageFrom = "team"
+      wx.navigateTo({
+        url: `/pages/event-detail/event-detail?event_key=${eventKey}&page_from=${pageFrom}`
+      });
+  },
+
   // 切换年份选择器事件
   onSelectYear: function(event) {
     selectYear(event, this); //   刷新选择器数据
-    teamYearEvent(app, this);
+    teamYearEvent(this); //   每次改变年份的时候
   },
 
   // 用户点击右上角分享

@@ -2,15 +2,25 @@
 var app = getApp();
 
 Page({
-  data: {},
+  data: {
+    teamNumber: Number
+  },
 
   onLoad: function() {},
 
-  onTeamDetail: function() {
-    wx.navigateTo({
-      url: `/pages/team-detail/team-detail?team_key=frc6766&page_from=main_page`
+  onTeamNumberInput: function(event) {
+    this.setData({
+      teamNumber: event.detail.value
     });
   },
+
+  onTeamDetail: function() {
+    wx.navigateTo({
+      url: `/pages/team-detail/team-detail?team_key=frc${this.data.teamNumber}&page_from=main_page`
+    });
+  },
+
   onEventDetail: function() {},
+
   onTeamEvent: function() {}
 });

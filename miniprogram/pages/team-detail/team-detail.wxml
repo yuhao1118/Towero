@@ -5,12 +5,13 @@
         <view class="tab-margin"></view>
         <!-- Team 选项卡 -->
         <van-tab title="Team">
-            <team-index yearArray="{{eventYears}}" selectedYear="{{selectedYear}}" bind:event="onSelectYear"></team-index>
+            <team-index teamInfo="{{teamInfo}}" eventYears="{{eventYears}}" selectedYear="{{selectedYear}}" bind:event="onSelectYear"></team-index>
         </van-tab>
         <!-- Event 选项卡 -->
         <van-tab title="Event">
-            <title-bar />
-            <event-card></event-card>
+            <view wx:for="{{eventInfoArray}}" wx:key="{{index}}" id="{{index}}">
+                <event-card eventInfo="{{eventInfoArray[index]}}" bind:event="onEventCardClick"/>
+            </view>
         </van-tab>
     </van-tabs>
 </view>
