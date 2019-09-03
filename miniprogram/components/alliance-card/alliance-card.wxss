@@ -1,0 +1,27 @@
+@import "/app.wxss";
+
+.alliance-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 48px;
+}
+
+.alliance-title {
+    font-size: 12pt;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    line-height: 48px;
+}
+
+.alliance-team {
+    font-size: 12pt;
+    text-decoration: underline;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    line-height: 48px;
+}

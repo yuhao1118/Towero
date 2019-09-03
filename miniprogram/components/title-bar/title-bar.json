@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "van-notice-bar": "/miniprogram_npm/vant-weapp/notice-bar/index"
+  }
+}

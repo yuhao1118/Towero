@@ -1,0 +1,3 @@
+<view>
+  <van-notice-bar custom-class="title-bar-height" scrollable="false" backgroundColor="#3f51b5" color="#fff" text="Regional Events" />
+</view>

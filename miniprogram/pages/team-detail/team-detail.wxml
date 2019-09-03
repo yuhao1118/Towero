@@ -1,0 +1,16 @@
+<view class="container">
+    <!-- 队伍详细信息Tab -->
+    <van-tabs color="#3f51b5" active="{{ activeTabs }}" bind:change="onTabChange">
+        <!-- 10px留白 -->
+        <view class="tab-margin"></view>
+        <!-- Team 选项卡 -->
+        <van-tab title="Team">
+            <team-index yearArray="{{eventYears}}" selectedYear="{{selectedYear}}" bind:event="onSelectYear"></team-index>
+        </van-tab>
+        <!-- Event 选项卡 -->
+        <van-tab title="Event">
+            <title-bar />
+            <event-card></event-card>
+        </van-tab>
+    </van-tabs>
+</view>

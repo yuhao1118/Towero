@@ -1,0 +1,30 @@
+/**app.wxss**/
+@import "/miniprogram_npm/vant-weapp/common/index.wxss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.list {
+  width: 750rpx;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.hover {
+  background-color: #eee;
+}
+
+.tab-margin {
+    margin-bottom: 10px;
+}
+
+page {
+  background: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}

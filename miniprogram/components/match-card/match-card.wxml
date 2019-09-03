@@ -1,0 +1,53 @@
+<view class='list match-container' hover-class="hover" hover-stay-time="50">
+    <van-row>
+        <!-- 左侧比赛场次 -->
+        <van-col span="5">
+            <view class="match-info-container">
+                <text class="match-number">Qual</text>
+                <text class="match-number">77</text>
+            </view>
+        </van-col>
+        <!-- 中间参赛队伍 -->
+        <van-col span="15">
+            <!-- 上方红色联盟 -->
+            <view class="red-alliance">
+                <van-row>
+                    <van-col span="8">
+                        <text class="team-number">6766</text>
+                    </van-col>
+                    <van-col span="8">
+                        <text class="team-number">6766</text>
+                    </van-col>
+                    <van-col span="8">
+                        <text class="team-number">6766</text>
+                    </van-col>
+                </van-row>
+            </view>
+            <!-- 下方蓝色联盟 -->
+            <view class="blue-alliance">
+                <van-row>
+                    <van-col span="8">
+                        <text class="team-number">6766</text>
+                    </van-col>
+                    <van-col span="8">
+                        <text class="team-number">6766</text>
+                    </van-col>
+                    <van-col span="8">
+                        <text class="team-number">6766</text>
+                    </van-col>
+                </van-row>
+            </view>
+        </van-col>
+        <!-- 右侧得分详情 -->
+        <van-col span="4">
+            <view class="red-score">
+                <view class="extra-rp bold">·</view>
+                <view class="score-text bold underline">100</view>
+            </view>
+            <view class="blue-score">
+                <view class="extra-rp bold">··</view>
+                <view class="score-text">90</view>
+            </view>
+        </van-col>
+    </van-row>
+</view>

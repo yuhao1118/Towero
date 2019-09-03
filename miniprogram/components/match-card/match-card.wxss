@@ -1,0 +1,70 @@
+@import "/app.wxss";
+
+.match-container {
+  height: 70px;
+}
+
+.match-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+}
+
+.match-number {
+    font-size: 12pt;
+}
+
+.red-alliance {
+  background-color: #ffcccb;
+  height: 35px;
+}
+
+.blue-alliance {
+  background-color: #d1d9ff;
+  height: 35px;
+}
+
+.red-score {
+  background-color: #ef9a9a;
+  height: 35px;
+}
+
+.blue-score {
+  background-color: #9fa8da;
+  height: 35px;
+}
+
+.team-number {
+  font-size: 10.5pt;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+}
+
+.score-text {
+  font-size: 10.5pt;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+}
+
+.extra-rp {
+    font-size: 11pt;
+    z-index:9999;
+    position: absolute;
+    margin-left: 5px;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.bold {
+  font-weight: bold;
+}

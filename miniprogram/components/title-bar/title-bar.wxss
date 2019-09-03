@@ -1,0 +1,5 @@
+@import "/app.wxss";
+
+.title-bar-height {
+  height: 24px;
+}

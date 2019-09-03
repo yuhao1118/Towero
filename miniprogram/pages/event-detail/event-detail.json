@@ -1,0 +1,15 @@
+{
+  "usingComponents": {
+    "event-index": "/components/event-index/event-index",
+    "team-card": "/components/team-card/team-card",
+    "rank-card": "/components/rank-card/rank-card",
+    "match-card": "/components/match-card/match-card",
+    "alliance-card": "/components/alliance-card/alliance-card",
+    "award-card": "/components/award-card/award-card",
+    "title-bar": "/components/title-bar/title-bar",
+    "van-tab": "/miniprogram_npm/vant-weapp/tab/index",
+    "van-tabs": "/miniprogram_npm/vant-weapp/tabs/index",
+    "van-collapse": "/miniprogram_npm/vant-weapp/collapse/index",
+    "van-collapse-item": "/miniprogram_npm/vant-weapp/collapse-item/index"
+  }
+}

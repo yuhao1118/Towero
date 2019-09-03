@@ -1,0 +1,8 @@
+<view class="list" hover-class="hover" hover-stay-time="50">
+    <view class="award-container">
+        <view class="award-title">Chairman Award</view>
+        <view wx:for="{{awardeeArray}}" wx:key="{{index}}">
+            <view class="award-content">{{awardeeArray[index]}}</view>
+        </view>
+    </view>
+</view>

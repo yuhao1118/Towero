@@ -1,0 +1,21 @@
+<view class="list team-container" hover-class="hover" hover-stay-time="50">
+    <van-row class="list" hover-class="hover" hover-stay-time="50">
+        <!-- 左侧队号 -->
+        <van-col class="team-number-container" span="6">
+            <text class="team-number">6766</text>
+        </van-col>
+        <!-- 右侧队伍信息 -->
+        <van-col span="15">
+            <view class="team-info-container">
+                <text class="team-name">Skoll x Atom</text>
+                <text class="team-location">Shenzhen, Guangdong, China</text>
+            </view>
+        </van-col>
+        <!-- 最右侧箭头 -->
+        <van-col span="3">
+            <view class="arrow">
+                <van-icon name="arrow" size="20px" color="#9e9e9e"/>
+            </view>
+        </van-col>
+    </van-row>
+</view>

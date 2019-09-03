@@ -1,0 +1,6 @@
+<!-- index.wxml -->
+<view class="container list">
+  <button bind:tap="onTeamDetail">Jump to team-detail</button>
+  <button bind:tap="onEventDetail">Jump to event-detail</button>
+  <button bind:tap="onTeamEvent">Jump to team-event</button>
+</view>

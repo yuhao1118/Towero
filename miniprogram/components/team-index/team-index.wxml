@@ -1,0 +1,13 @@
+<view class="list">
+    <!-- 队伍信息简介 -->
+    <van-cell-group>
+        <van-cell clickable="{{true}}" size="large" title="Skoll x Atom" label="Team 6766"/>
+        <van-cell clickable="{{true}}" size="large" icon="location" label="Shenzhen, Guangdong, China" />
+        <van-cell clickable="{{true}}" size="large" icon="label" label="Atom Creative Town & Atom Robot Education" />
+        <van-cell clickable="{{true}}" size="large" icon="clock" label="{{selectedYear}}" is-link  arrow-direction="down" bind:click="onYearCellClick" />
+    </van-cell-group>
+    <!-- 参赛年份选择弹出层 -->
+    <van-popup show="{{ yearCellClick }}" position="bottom" bind:close="onPopUpClose">
+        <van-picker loading="{{yearArray==null || yearArray.length == 0}}" columns="{{ yearArray }}" default-index="{{ 0 }}" bind:change="onPickerChange" />
+    </van-popup>
+</view>

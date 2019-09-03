@@ -1,0 +1,40 @@
+@import "/app.wxss";
+
+.event-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 15px;
+}
+
+.location-date-container {
+  margin-top: 3px;
+  display: flex;
+  flex-direction: column;
+}
+
+.location {
+  font-size: 9.375pt;
+  overflow: auto;
+  color: #9e9e9e;
+  width: 400rpx;
+}
+
+.date {
+  font-size: 9.375pt;
+  color: #9e9e9e;
+  overflow: auto;
+  width: 400rpx;
+}
+
+.event-title {
+  font-size: 13pt;
+}
+
+.arrow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+}

@@ -1,0 +1,30 @@
+<!-- 赛事信息简介 -->
+<view class="list">
+    <van-cell-group>
+        <van-cell clickable="{{true}}" size="large" title="RCC Qianjiang International Robotics Invitational" label="Ben Jing Er Lu, Xiaoshan Qu, Hangzhou Shi, Zhejiang Sheng, China, 311215" />
+        <van-cell clickable="{{true}}" size="large" icon="clock" label="Aug 1 to Aug 4, 2019" value="Offseason" />
+    </van-cell-group>
+</view>
+<view class="tab-margin"></view>
+
+<!-- Top teams单元格
+<view class="list">
+    <title-bar />
+    <van-cell-group>
+        <van-cell clickable="{{true}}" title="Team 1678" is-link />
+        <van-cell clickable="{{true}}" title="Team 1678" is-link />
+        <van-cell clickable="{{true}}" title="Team 1678" is-link />
+        <van-cell clickable="{{true}}" title="Team 1678" is-link />
+        <van-cell clickable="{{true}}" title="Team 1678" is-link />
+    </van-cell-group>
+</view>
+<view class="tab-margin"></view> -->
+
+<!-- 可跳转单元格 -->
+<view class="list">
+    <van-cell-group>
+        <van-cell clickable="{{true}}" size="large" icon="friends" title="Alliance" is-link />
+        <van-cell clickable="{{true}}" size="large" icon="add-square" title="Stat" is-link />
+        <van-cell clickable="{{true}}" size="large" icon="award" title="Award" is-link />
+    </van-cell-group>
+</view>

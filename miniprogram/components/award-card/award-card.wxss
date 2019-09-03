@@ -1,0 +1,16 @@
+@import "/app.wxss";
+
+.award-container {
+  padding: 5px 15px;
+}
+
+.award-title {
+  font-size: 11pt;
+  font-style: italic;
+}
+
+.award-content {
+  font-size: 11pt;
+  text-align: right;
+  font-weight: bold;
+}

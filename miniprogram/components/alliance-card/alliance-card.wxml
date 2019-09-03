@@ -1,0 +1,22 @@
+<view class="list alliance-container" >
+    <van-row>
+        <!-- 联盟次序 -->
+        <van-col span="9">
+            <view class='alliance-title'>Alliance 1</view>
+        </van-col>
+        <!-- 联盟一号队伍 -->
+        <van-col span="5">
+            <view class='alliance-team' hover-class="hover" hover-stay-time="50">6766</view>
+        </van-col>
+        <!-- 联盟二号队伍 -->
+        <van-col span="5">
+            <view class='alliance-team' hover-class="hover" hover-stay-time="50">6766</view>
+        </van-col>
+        <!-- 联盟三号队伍 -->
+        <van-col span="5">
+            <view class='alliance-team' hover-class="hover" hover-stay-time="50">6766</view>
+        </van-col>
+        <!-- 底部框线 -->
+        <view class="van-hairline--bottom"></view>
+    </van-row>
+</view>

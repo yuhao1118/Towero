@@ -1,0 +1,8 @@
+<view class="list">
+    <!-- 队伍比赛统计信息 -->
+    <van-cell-group>
+        <van-cell clickable="{{true}}" size="large" title="OPR" label="100.97" />
+        <van-cell clickable="{{true}}" size="large" title="DPR" label="100.97" />
+        <van-cell clickable="{{true}}" size="large" title="CCWM" label="100.97" />
+    </van-cell-group>
+</view>
