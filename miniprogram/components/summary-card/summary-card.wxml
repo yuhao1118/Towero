@@ -1,18 +1,17 @@
 <view class="list">
     <!-- Info组 -->
-    <title-bar />
     <van-cell-group>
         <van-cell clickable="{{true}}" size="large" title="Status" label="Won the event" />
         <van-cell clickable="{{true}}" size="large" title="Awards" label="Won 2 awards" />
     </van-cell-group>
     <!-- Playoffs组 -->
-    <title-bar />
+    <title-bar title="Playoffs"/>
     <van-cell-group>
         <van-cell clickable="{{true}}" size="large" title="Alliance" label="1st Pick of Alliance 1" />
         <van-cell clickable="{{true}}" size="large" title="Record" label="6-0-0" />
     </van-cell-group>
     <!-- Qualifications组 -->
-    <title-bar />
+    <title-bar title="Qualifications组"/>
     <van-cell-group>
         <van-cell clickable="{{true}}" size="large" title="Rank" label="2nd (of 34)" />
         <van-cell clickable="{{true}}" size="large" title="Record" label="10-2-0" />

@@ -1,16 +1,8 @@
-@import "/app.wxss";
-
-/* 队伍简介卡片容器 */
-.team-container {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    height: 50px;
-    overflow: hidden;
-}
+@import '/app.wxss';
 
 /* 队伍编号容器 */
 .team-number-container {
-  height: 50px;
+  height: 40px;
 }
 
 /* 队伍编号样式 */
@@ -20,12 +12,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 50px;
+  line-height: 40px;
 }
 
 /* 队伍简介容器 */
 .team-info-container {
-  height: 50px;
+  margin-left: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -34,19 +26,12 @@
 /* 队名样式 */
 .team-name {
   font-size: 12pt;
+  line-height: 20px;
 }
 
 /* 队伍地址样式 */
 .team-location {
   color: #535353;
   font-size: 10pt;
-}
-
-/* 最右侧箭头样式 */
-.arrow {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
+  line-height: 20px;
 }

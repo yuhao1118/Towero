@@ -1,16 +1,9 @@
 /*  队伍详情页
     启动参数：1. team_key  --  e.g. frc6766
-            2. page_from      --  从哪个界面跳转来。可选值：event, main_page
-    示例：/pages/team-detail/team-detail?team_key=frc6766&page_from=event
+    示例：/pages/team-detail/team-detail?team_key=frc6766
 */
-import {
-  selectYear,
-  tabChange,
-  linkParam,
-  teamInfo,
-  eventYears,
-  teamYearEvent
-} from "/utils";
+import { utils } from '/utils';
+
 
 /* API 列表 */
 // 1. /team/{team_key}                          通过team_key查询队伍信息
@@ -22,7 +15,6 @@ Page({
   data: {
     activeTabs: 0, // 当前激活的Tab的索引
     teamKey: String, // team_key -- e.g. frc6766 用于从缓存里索引队伍信息
-    pageFrom: String, // 从哪个界面跳转来
     teamInfo: Object, // 从缓存中索引到的队伍信息
     eventYears: Array, // eventKeys处理去重得到的队伍参赛年份数组
     selectedYear: Number, // 当前选中的参赛年份（指定一年）
@@ -31,29 +23,30 @@ Page({
 
   // 生命周期函数--监听页面加载
   onLoad: function(options) {
-    linkParam(options, this); //   保存跳转参数
-    teamInfo(this);
-    eventYears(this);
+    utils.linkParam(options, this); //   保存跳转参数
+    utils.teamInfo(this);
+    utils.eventYears(this);
   },
 
   // 切换Tab事件
   onTabChange: function(event) {
-    tabChange(event, this); //   刷新tab切换数据
+    utils.tabChange(event, this); //   刷新tab切换数据
   },
 
   // 点击event-card事件，自动返回eventKey
-  onEventCardClick: function(event){
-      var eventKey = event.detail
-      var pageFrom = "team"
-      wx.navigateTo({
-        url: `/pages/event-detail/event-detail?event_key=${eventKey}&page_from=${pageFrom}`
-      });
+  onEventCardClick: function(event) {
+    var eventKey = event.detail
+    var teamKey = this.data.teamKey
+
+    wx.navigateTo({
+      url: `/pages/team-event/team-event?team_key=${teamKey}&event_key=${eventKey}`
+    });
   },
 
   // 切换年份选择器事件
   onSelectYear: function(event) {
-    selectYear(event, this); //   刷新选择器数据
-    teamYearEvent(this); //   每次改变年份的时候
+    utils.selectYear(event, this); //   刷新选择器数据
+    utils.teamYearEvent(this); //   每次改变年份的时候
   },
 
   // 用户点击右上角分享

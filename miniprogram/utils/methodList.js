@@ -1,7 +1,3 @@
-/*
-    用于存放各种对数组操作的函数
-*/
-
 // 输入存放event_key的数组，输出去重后参赛年份
 // eventKeyArray -- event_key数组，event_key格式: 2019xxxx
 // res           -- 去重后的参赛年份数组
@@ -40,6 +36,8 @@ function yearSort(x, y) {
 function dateSort(x, y) {
   var dateX;
   var dateY;
+
+  // 创建js日期对象
   if (x.hasOwnProperty('start_date')) {
     dateX = new Date(x.start_date);
   }
@@ -51,8 +49,29 @@ function dateSort(x, y) {
   return dateX && dateY ? dateX - dateY : 0;
 }
 
+// 按队号从小到大排序
+function teamSort(x,y){
+    return x.team_number - y.team_number;
+}
+
+// 按队号从小到大排序
+function oprSort(x,y){
+    return y.oprs - x.oprs;
+}
+
+// 日期替换器，将eventInfo里的起始日期的属性替换成英文简写
+function dateReplace(dateStr) {
+  var date = new Date(dateStr);
+  var tempArr = date.toDateString().split(' ');
+  var res = tempArr[1] + ' ' + tempArr[2]; // 只返回日月即可，年份由另外的属性获取
+  return res;
+}
+
 module.exports = {
   getEventYears: getEventYears,
   yearSort: yearSort,
-  dateSort: dateSort
+  dateSort: dateSort,
+  dateReplace: dateReplace,
+  teamSort: teamSort,
+  oprSort: oprSort
 };

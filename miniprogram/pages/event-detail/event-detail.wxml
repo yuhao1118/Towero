@@ -1,24 +1,32 @@
 <view class="container">
     <!-- 赛事详细信息Tab -->
     <van-tabs color="#3f51b5" active="{{ activeTabs }}" bind:change="onTabChange">
-        <!-- 10px留白 -->
+        <!-- 留白 -->
         <view class="tab-margin"></view>
         <!-- 赛事简介选项卡 -->
         <van-tab title="Info">
-            <event-index></event-index>
+            <event-index eventInfo="{{eventInfo}}" />
         </van-tab>
         <!-- 参赛队伍选项卡 -->
         <van-tab title="Teams">
-            <team-card></team-card>
+            <team-card wx:for="{{teamInfoArray}}" wx:key="{{index}}" id="{{index}}" bind:event="onTeamCardClick" teamInfo="{{teamInfoArray[index]}}" />
         </van-tab>
         <!-- 队伍排名选项卡 -->
         <van-tab title="Rankings">
-            <rank-card></rank-card>
+            <rank-card wx:for="{{rankArray}}" wx:key="{{index}}" id="{{index}}" rankInfo="{{rankArray[index]}}" />
         </van-tab>
         <!-- 比赛场次选项卡 -->
         <van-tab title="Matches">
             <title-bar></title-bar>
             <match-card></match-card>
         </van-tab>
+        <!-- 联盟选项卡 -->
+        <van-tab title="Alliances"></van-tab>
+        <!-- Stats选项卡 -->
+        <van-tab title="Stats">
+            <opr-card wx:for="{{oprArray}}" wx:key="{{index}}" id="{{index}}" oprInfo="{{oprArray[index]}}"/>
+        </van-tab>
+        <!-- 奖项选项卡 -->
+        <van-tab title="Awards"></van-tab>
     </van-tabs>
 </view>

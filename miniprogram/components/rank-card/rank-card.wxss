@@ -1,26 +1,17 @@
 @import "/app.wxss";
 
-.rank-container {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    height: 50px;
-    overflow: hidden;
-}
-
 .rank-play-off-container {
+    padding-top: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 50px;
 }
 
 .team-info-container {
+    margin-left: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 50px;
-    padding-right: 15px;
 }
 
 .rank-number {
@@ -40,4 +31,5 @@
 .rank-score {
     color: #9e9e9e;
     font-size: 10pt;
+    line-height: 15pt;
 }

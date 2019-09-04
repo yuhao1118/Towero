@@ -7,6 +7,7 @@
     "alliance-card": "/components/alliance-card/alliance-card",
     "award-card": "/components/award-card/award-card",
     "title-bar": "/components/title-bar/title-bar",
+    "opr-card": "/components/opr-card/opr-card",
     "van-tab": "/miniprogram_npm/vant-weapp/tab/index",
     "van-tabs": "/miniprogram_npm/vant-weapp/tabs/index",
     "van-collapse": "/miniprogram_npm/vant-weapp/collapse/index",

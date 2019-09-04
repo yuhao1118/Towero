@@ -4,6 +4,9 @@
         <input placeholder="Team Number: " bind:input="onTeamNumberInput" />
     </view>
     <button bind:tap="onTeamDetail">Jump to team-detail</button>
+    <view style="height: 50px; background-color: #eee">
+        <input placeholder="Event Key: " bind:input="onEventKeyInput" />
+    </view>
     <button bind:tap="onEventDetail">Jump to event-detail</button>
     <button bind:tap="onTeamEvent">Jump to team-event</button>
 </view>

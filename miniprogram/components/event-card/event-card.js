@@ -17,6 +17,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    //   点击event-card自动触发event事件（可以bind），同时返回eventKey
     onClick: function() {
         var eventKey = this.properties.eventInfo.key
         this.triggerEvent("event", eventKey);
