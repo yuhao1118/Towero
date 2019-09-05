@@ -50,13 +50,18 @@ function dateSort(x, y) {
 }
 
 // 按队号从小到大排序
-function teamSort(x,y){
-    return x.team_number - y.team_number;
+function teamSort(x, y) {
+  return x.team_number - y.team_number;
 }
 
-// 按队号从小到大排序
-function oprSort(x,y){
-    return y.oprs - x.oprs;
+// 按opr从d大到小排序
+function oprSort(x, y) {
+  return y.oprs - x.oprs;
+}
+
+// 按比赛从小到大排序
+function matchSort(x, y) {
+  return x.match_number - y.match_number;
 }
 
 // 日期替换器，将eventInfo里的起始日期的属性替换成英文简写
@@ -73,5 +78,6 @@ module.exports = {
   dateSort: dateSort,
   dateReplace: dateReplace,
   teamSort: teamSort,
-  oprSort: oprSort
+  oprSort: oprSort,
+  matchSort: matchSort
 };

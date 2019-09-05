@@ -6,8 +6,14 @@
 // 5. /event/{event_key}/awards                     获取到奖项信息
 // 6. /event/{event_key}/oprs                       获取到全部Opr信息
 // 7. /event/{event_key}/teams/keys                 获取全部team_key
+// 8. /event/{event_key}/matches                    获取全部比赛信息
 
-import { teamSort, oprSort, dateReplace } from '../../utils/methodList';
+import {
+  teamSort,
+  oprSort,
+  matchSort,
+  dateReplace
+} from '../../utils/methodList';
 
 var app = getApp();
 
@@ -50,7 +56,6 @@ var utils = {
     app.httpsRequest(`/event/${eventKey}/rankings`, res => {
       var { extra_stats_info, sort_order_info, rankings } = res;
       var teamInfoObj = that.data.teamInfoObj; // 以team_key为属性的对象
-      console.log(teamInfoObj);
 
       // 确保有排名信息
       if (rankings) {
@@ -63,6 +68,9 @@ var utils = {
 
           //   添加team_info属性
           curTeamRanking.team_info = teamInfoObj[team_key];
+
+          //   添加team_number 临时队号没有team_info
+          curTeamRanking.team_number = team_key.replace('frc', '');
 
           //   处理extra_stats_str属性
           for (var j in extra_stats_info) {
@@ -98,36 +106,180 @@ var utils = {
       var oprObj = res; // 未经处理的所有opr数据
       var teamInfoObj = that.data.teamInfoObj; // 以team_key为属性的对象
 
-      app.httpsRequest(`/event/${eventKey}/teams/keys`, res => {
-        for (var i in res) {
-          var teamKey = res[i];
-          var oprs = app
-            .jsonSafeProp('oprObj.oprs.' + teamKey, oprObj)
-            .toFixed(2);
-          var dprs = app
-            .jsonSafeProp('oprObj.dprs.' + teamKey, oprObj)
-            .toFixed(2);
-          var ccwms = app
-            .jsonSafeProp('oprObj.ccwms.' + teamKey, oprObj)
-            .toFixed(2);
-          var teamInfo = app.jsonSafeProp(
-            'teamInfoObj.' + teamKey,
-            teamInfoObj
-          );
+      Object.keys(res.oprs).forEach(key => {
+        var teamKey = key;
+        var teamNumber = teamKey.replace('frc', '');
+        var oprs = app
+          .jsonSafeProp('oprObj.oprs.' + teamKey, oprObj)
+          .toFixed(2);
+        var dprs = app
+          .jsonSafeProp('oprObj.dprs.' + teamKey, oprObj)
+          .toFixed(2);
+        var ccwms = app
+          .jsonSafeProp('oprObj.ccwms.' + teamKey, oprObj)
+          .toFixed(2);
+        var teamInfo = app.jsonSafeProp('teamInfoObj.' + teamKey, teamInfoObj);
 
-          oprArray.push({
-            oprs: oprs,
-            dprs: dprs,
-            ccwms: ccwms,
-            team_info: teamInfo
-          });
+        oprArray.push({
+          oprs: oprs,
+          dprs: dprs,
+          ccwms: ccwms,
+          key: teamKey,
+          team_number: teamNumber,
+          team_info: teamInfo
+        });
+      });
+
+      oprArray.sort(oprSort);
+
+      that.setData({
+        oprArray: oprArray
+      });
+    });
+  },
+
+  //    请求alliances Api函数
+  allianceInfo: function(that) {
+    var eventKey = that.data.eventKey;
+
+    app.httpsRequest(`/event/${eventKey}/alliances`, res => {
+      // 补全level信息和alliance name，因为有可能会缺少（一个是最终晋级，一个是联盟编号）
+      //   生成picks_team_number属性 联盟队伍数组，内容为team_number
+      for (var i in res) {
+        var allianceObj = res[i];
+        var { picks } = allianceObj; // 联盟队伍数组，内容为team_key
+
+        // 去掉team_key的frc头
+        if (picks && picks.length > 0) {
+          var picks_team_number = [];
+          for (var j in picks) {
+            picks_team_number.push(picks[j].replace('frc', ''));
+          }
+          allianceObj.picks_team_number = picks_team_number;
         }
 
-        oprArray.sort(oprSort);
+        // 补全level信息
+        if (!app.jsonSafeProp('allianceObj.status.level', allianceObj)) {
+          allianceObj.status = {
+            level: 'QF'
+          };
+        }
 
-        that.setData({
-          oprArray: oprArray
-        });
+        // 把level信息转成大写
+        allianceObj.status.level = allianceObj.status.level.toUpperCase();
+
+        // 补全name信息
+        if (!allianceObj.hasOwnProperty('name') || !allianceObj.name) {
+          var index = parseInt(i) + 1;
+          allianceObj.name = 'Alliance ' + index;
+        }
+      }
+
+      that.setData({
+        alliancesArray: res
+      });
+    });
+  },
+
+  //   请求matches Api函数
+  matchesInfo: function(that) {
+    var eventKey = that.data.eventKey;
+    var matchInfo = {
+      qm: [],
+      qf: [],
+      sf: [],
+      f: []
+    };
+
+    app.httpsRequest(`/event/${eventKey}/matches`, res => {
+      for (var i in res) {
+        var curMatchObj = res[i];
+        var { comp_level } = curMatchObj;
+
+        // 增加team_numbers属性
+        var blueTeamKey = app.jsonSafeProp(
+          'curMatchObj.alliances.blue.team_keys',
+          curMatchObj
+        );
+        var redTeamKey = app.jsonSafeProp(
+          'curMatchObj.alliances.red.team_keys',
+          curMatchObj
+        );
+
+        // 替换蓝方teamKey
+        if (blueTeamKey && blueTeamKey.length > 0) {
+          var blueTeamNumber = [];
+
+          for (var i in blueTeamKey) {
+            var teamNumber = blueTeamKey[i].replace('frc', '');
+            blueTeamNumber.push(teamNumber);
+          }
+
+          curMatchObj.alliances.blue.team_numbers = blueTeamNumber;
+        }
+
+        // 替换红方teamKey
+        if (redTeamKey && redTeamKey.length > 0) {
+          var redTeamNumber = [];
+
+          for (var i in redTeamKey) {
+            var teamNumber = redTeamKey[i].replace('frc', '');
+            redTeamNumber.push(teamNumber);
+          }
+
+          curMatchObj.alliances.red.team_numbers = redTeamNumber;
+        }
+
+        // 将比赛分类
+        if (
+          comp_level == 'qm' ||
+          comp_level == 'qf' ||
+          comp_level == 'sf' ||
+          comp_level == 'f'
+        ) {
+          matchInfo[comp_level].push(curMatchObj);
+        }
+      }
+
+      matchInfo.qm.sort(matchSort);
+      matchInfo.qf.sort(matchSort);
+      matchInfo.sf.sort(matchSort);
+      matchInfo.f.sort(matchSort);
+
+      that.setData({
+        matchInfo: matchInfo
+      });
+    });
+  },
+
+  //   请求award Api函数
+  awardInfo: function(that) {
+    var eventKey = that.data.eventKey;
+
+    app.httpsRequest(`/event/${eventKey}/awards`, res => {
+      var teamInfoObj = that.data.teamInfoObj; // 以team_key为属性的对象
+
+      // 增加team_info属性
+      for (var i in res) {
+        var awardInfo = res[i];
+        var { recipient_list } = awardInfo;
+
+        // recipient_list也是一个数组，里面有获奖队伍的team_key
+        for (var j in recipient_list) {
+          var recipientInfo = recipient_list[j];
+          var { team_key } = recipientInfo;
+
+          if (team_key) {
+            var teamInfo = teamInfoObj[team_key];
+
+            // 增加team_info属性
+            recipientInfo.team_info = teamInfo;
+          }
+        }
+      }
+
+      that.setData({
+        awardsArray: res
       });
     });
   },

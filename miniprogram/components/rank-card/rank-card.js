@@ -15,5 +15,11 @@ Component({
   /**
    * 组件的方法列表
    */
-  methods: {}
+  methods: {
+    //   点击team-card自动触发event事件（可以bind），同时返回teamKey
+    onClick: function() {
+      var teamKey = this.properties.rankInfo.team_key;
+      this.triggerEvent('event', teamKey);
+    }
+  }
 });

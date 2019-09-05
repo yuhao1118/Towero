@@ -1,20 +1,17 @@
-<view class="list alliance-container" >
+<view wx:if="{{allianceInfo.picks}}" class="list alliance-container">
     <van-row>
         <!-- 联盟次序 -->
-        <van-col span="9">
-            <view class='alliance-title'>Alliance 1</view>
+        <van-col span="3">
+            <view class='alliance-level'>{{allianceInfo.status.level}}</view>
         </van-col>
-        <!-- 联盟一号队伍 -->
         <van-col span="5">
-            <view class='alliance-team' hover-class="hover" hover-stay-time="50">6766</view>
+            <view class='alliance-title'>{{allianceInfo.name}}</view>
         </van-col>
-        <!-- 联盟二号队伍 -->
-        <van-col span="5">
-            <view class='alliance-team' hover-class="hover" hover-stay-time="50">6766</view>
-        </van-col>
-        <!-- 联盟三号队伍 -->
-        <van-col span="5">
-            <view class='alliance-team' hover-class="hover" hover-stay-time="50">6766</view>
+        <!-- 联盟队伍 -->
+        <van-col span="{{16/allianceInfo.picks.length}}" wx:for="{{allianceInfo.picks}}" wx:key="{{index}}" id="{{index}}">
+            <view bind:tap="onClick" id="{{index}}" class='alliance-team' hover-class="hover" hover-stay-time="50">
+                {{allianceInfo.picks_team_number[index]}}
+            </view>
         </van-col>
         <!-- 底部框线 -->
         <view class="van-hairline--bottom"></view>

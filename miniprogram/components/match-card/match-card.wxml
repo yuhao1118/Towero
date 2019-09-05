@@ -1,10 +1,10 @@
-<view class='list match-container' hover-class="hover" hover-stay-time="50">
+<view wx:if="{{match}}" class='list match-container'>
     <van-row>
         <!-- 左侧比赛场次 -->
         <van-col span="5">
             <view class="match-info-container">
-                <text class="match-number">Qual</text>
-                <text class="match-number">77</text>
+                <view class="match-number">{{type}}</view>
+                <view class="match-number">{{match.match_number}}</view>
             </view>
         </van-col>
         <!-- 中间参赛队伍 -->
@@ -12,28 +12,16 @@
             <!-- 上方红色联盟 -->
             <view class="red-alliance">
                 <van-row>
-                    <van-col span="8">
-                        <text class="team-number">6766</text>
-                    </van-col>
-                    <van-col span="8">
-                        <text class="team-number">6766</text>
-                    </van-col>
-                    <van-col span="8">
-                        <text class="team-number">6766</text>
+                    <van-col span="8" wx:for="{{match.alliances.red.team_numbers}}" wx:key="{{index}}" id="{{index}}">
+                        <view bind:tap="onRedClick" id="{{index}}" class="{{curTeam == match.alliances.red.team_numbers[index] ? 'team-number underline' : 'team-number'}}">{{match.alliances.red.team_numbers[index]}}</view>
                     </van-col>
                 </van-row>
             </view>
             <!-- 下方蓝色联盟 -->
             <view class="blue-alliance">
                 <van-row>
-                    <van-col span="8">
-                        <text class="team-number">6766</text>
-                    </van-col>
-                    <van-col span="8">
-                        <text class="team-number">6766</text>
-                    </van-col>
-                    <van-col span="8">
-                        <text class="team-number">6766</text>
+                    <van-col span="8" wx:for="{{match.alliances.blue.team_numbers}}" wx:key="{{index}}" id="{{index}}">
+                        <view bind:tap="onBlueClick" id="{{index}}" class="{{curTeam == match.alliances.blue.team_numbers[index] ? 'team-number underline' : 'team-number'}}">{{match.alliances.blue.team_numbers[index]}}</view>
                     </van-col>
                 </van-row>
             </view>
@@ -41,12 +29,10 @@
         <!-- 右侧得分详情 -->
         <van-col span="4">
             <view class="red-score">
-                <view class="extra-rp bold">·</view>
-                <view class="score-text bold underline">100</view>
+                <view wx:if="{{match.alliances.red.score >= 0}}" class="{{match.winning_alliance == 'red' ? 'score-text bold underline' : 'score-text'}}">{{match.alliances.red.score}}</view>
             </view>
             <view class="blue-score">
-                <view class="extra-rp bold">··</view>
-                <view class="score-text">90</view>
+                <view wx:if="{{match.alliances.blue.score >= 0}}" class="{{match.winning_alliance == 'blue' ? 'score-text bold underline' : 'score-text'}}">{{match.alliances.blue.score}}</view>
             </view>
         </van-col>
     </van-row>

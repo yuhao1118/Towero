@@ -12,6 +12,7 @@ import { utils } from '/utils';
 // 5. /event/{event_key}/awards                     获取到奖项信息
 // 6. /event/{event_key}/oprs                       获取到全部Opr信息
 // 7. /event/{event_key}/teams/keys                 获取全部team_key
+// 8. /event/{event_key}/matches                    获取全部比赛信息
 
 Page({
   // 页面的初始数据
@@ -20,18 +21,26 @@ Page({
     eventKey: String, // event_key -- e.g: 2019casf
     eventInfo: Object, // 存放赛事信息
     teamInfoArray: Array, // 存放所有队伍信息的数组
-    teamInfoObj: Object, // 存放所有队伍信息的对象，以team_key为属性 
+    teamInfoObj: Object, // 存放所有队伍信息的对象，以team_key为属性
     alliancesArray: Array, // 存放所有联盟信息的数组
     awardsArray: Array, // 存放所有奖项信息的数组
     rankArray: Array, // 存放所有排名信息的数组
-    oprArray: Array // 存放所有opr数据的数组
+    oprArray: Array, // 存放所有opr数据的数组
+    matchInfo: Object /* 存放所有比赛信息 
+                        {
+                            qm : Array,     // 资格赛数组
+                            qf : Array,     // 四分之一决赛数组
+                            sf : Array,     // 半决赛数组
+                            f : Array       // 决赛数组
+                        }
+                        */
   },
 
   // 生命周期函数--监听页面加载
   onLoad: function(options) {
-    utils.linkParam(options, this)
-    utils.eventInfo(this)
-    utils.teamInfo2Obj(this)
+    utils.linkParam(options, this);
+    utils.eventInfo(this);
+    utils.teamInfo2Obj(this);
   },
 
   //   切换Tab
@@ -51,16 +60,19 @@ Page({
     }
     // Matches Tab页
     else if (activeTabs == 3) {
+      utils.matchesInfo(this);
     }
     // Alliances Tab页
     else if (activeTabs == 4) {
+      utils.allianceInfo(this);
     }
     // Stats Tab页
     else if (activeTabs == 5) {
-        utils.oprInfo(this)
+      utils.oprInfo(this);
     }
     // Awards Tab页
     else if (activeTabs == 6) {
+      utils.awardInfo(this);
     }
 
     this.setData({
@@ -68,13 +80,13 @@ Page({
     });
   },
 
-    // 点击team-card事件，自动返回teamKey
-    onTeamCardClick: function(event) {
-        var teamKey = event.detail;
-        wx.navigateTo({
-          url: `/pages/team-detail/team-detail?team_key=${teamKey}`
-        });
-      },
+  // 点击team-card事件，自动返回teamKey
+  onTeamCardClick: function(event) {
+    var teamKey = event.detail;
+    wx.navigateTo({
+      url: `/pages/team-detail/team-detail?team_key=${teamKey}`
+    });
+  },
 
   // 用户点击右上角分享
   onShareAppMessage: function() {}

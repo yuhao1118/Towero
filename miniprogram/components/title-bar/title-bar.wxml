@@ -1,3 +1,4 @@
 <view>
     <van-notice-bar wx:if="{{title}}" custom-class="title-bar-height" scrollable="false" backgroundColor="#3f51b5" color="#fff" text="{{title}}" />
+    <slot></slot>
 </view>

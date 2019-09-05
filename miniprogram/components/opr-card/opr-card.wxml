@@ -4,12 +4,12 @@
             <van-row>
                 <!-- 左侧队号 -->
                 <van-col class="team-number-container" span="4">
-                    <text class="team-number">{{oprInfo.team_info.team_number}}</text>
+                    <text class="team-number">{{oprInfo.team_number}}</text>
                 </van-col>
                 <!-- 右侧Opr信息 -->
                 <van-col span="20">
                     <view class="team-info-container">
-                        <text class="team-name">{{oprInfo.team_info.nickname}}</text>
+                        <text class="team-name">{{oprInfo.team_info.nickname ? oprInfo.team_info.nickname : 'Temporary Team'}}</text>
                         <text class="opr">Opr: {{oprInfo.oprs}} Dpr: {{oprInfo.dprs}} CCWM: {{oprInfo.ccwms}}</text>
                     </view>
                 </van-col>

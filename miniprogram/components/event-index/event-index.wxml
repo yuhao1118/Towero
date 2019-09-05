@@ -3,6 +3,6 @@
     <van-cell-group>
         <van-cell clickable size="large" title="{{eventInfo.name}}" label="{{eventInfo.address}}" />
         <van-cell wx:if="{{eventInfo.event_type_string}}" clickable size="large" icon="info" label="{{eventInfo.event_type_string}} Event" />
-        <van-cell wx:if="{{eventInfo.end_date_str}}" clickable size="large" icon="clock" label="{{eventInfo.start_date_str}} to {{eventInfo.end_date_str}}, {{eventInfo.year}}" value="{{eventInfo.week ? 'Week '+eventInfo.week : ''}}" />
+        <van-cell wx:if="{{eventInfo.end_date_str}}" clickable size="large" icon="clock" label="{{eventInfo.start_date_str}} to {{eventInfo.end_date_str}}, {{eventInfo.year}}" value="{{eventInfo.week ? 'Week '+ (eventInfo.week + 1) : ''}}" />
     </van-cell-group>
 </view>

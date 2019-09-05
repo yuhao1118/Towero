@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+      "title-bar": "/components/title-bar/title-bar",
+      "match-card": "/components/match-card/match-card"
+  }
+}

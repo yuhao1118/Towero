@@ -1,0 +1,14 @@
+<view>
+    <title-bar wx:if="{{matchInfo.qm}}" title="Qualification Matches">
+        <match-card bind:event="onClick" wx:for="{{matchInfo.qm}}" wx:key="{{index}}" id="{{index}}" match="{{matchInfo.qm[index]}}" type="Qual" curTeam="{{curTeam}}" />
+    </title-bar>
+    <title-bar wx:if="{{matchInfo.qf}}" title="Quarterfinals Matches">
+        <match-card bind:event="onClick" wx:for="{{matchInfo.qf}}" wx:key="{{index}}" id="{{index}}" match="{{matchInfo.qf[index]}}" type="Quarter" curTeam="{{curTeam}}"/>
+    </title-bar>
+    <title-bar wx:if="{{matchInfo.sf}}" title="Semifinals Matches">
+        <match-card bind:event="onClick" wx:for="{{matchInfo.sf}}" wx:key="{{index}}" id="{{index}}" match="{{matchInfo.sf[index]}}" type="Semi" curTeam="{{curTeam}}"/>
+    </title-bar>
+    <title-bar wx:if="{{matchInfo.f}}" title="Finals Matches">
+        <match-card bind:event="onClick" wx:for="{{matchInfo.f}}" wx:key="{{index}}" id="{{index}}" match="{{matchInfo.f[index]}}" type="Final" curTeam="{{curTeam}}"/>
+    </title-bar>
+</view>

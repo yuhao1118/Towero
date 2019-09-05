@@ -1,8 +1,8 @@
-<view class="list" hover-class="hover" hover-stay-time="50">
-    <view class="award-container">
-        <view class="award-title">Chairman Award</view>
-        <view wx:for="{{awardeeArray}}" wx:key="{{index}}">
-            <view class="award-content">{{awardeeArray[index]}}</view>
+<view wx:if="{{awardInfo.name}}" class="list">
+    <van-cell use-label-slot clickable>
+        <view slot="title">
+            <view class="award-title">{{awardInfo.name}}</view>
+            <view wx:for="{{awardInfo.recipient_list}}" wx:key="{{index}}" id="{{index}}" bind:tap="onClick" class="award-content">{{awardInfo.recipient_list[index].awardee ? awardInfo.recipient_list[index].awardee : awardInfo.recipient_list[index].team_info.nickname + ' ' + awardInfo.recipient_list[index].team_info.team_number}} </view>
         </view>
-    </view>
+    </van-cell>
 </view>

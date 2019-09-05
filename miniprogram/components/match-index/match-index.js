@@ -1,10 +1,11 @@
-// components/alliance-card/alliance-card.js
+// components/match-index/match-index.js
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    allianceInfo: Object
+    matchInfo: Object,
+    curTeam: String // 当前队伍编号
   },
 
   /**
@@ -17,9 +18,9 @@ Component({
    */
   methods: {
     //   点击team-card自动触发event事件（可以bind），同时返回teamKey
+    //  将match-card触发的event点击事件转发给pages
     onClick: function(event) {
-      var index = event.target.id
-      var teamKey = this.properties.allianceInfo.picks[index]
+      var teamKey = event.detail;
       this.triggerEvent('event', teamKey);
     }
   }

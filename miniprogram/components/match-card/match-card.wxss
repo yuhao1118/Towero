@@ -2,6 +2,7 @@
 
 .match-container {
   height: 70px;
+  margin-bottom: 5px;
 }
 
 .match-info-container {
@@ -43,6 +44,7 @@
   align-items: center;
   justify-content: center;
   height: 35px;
+  color: #3f51b5;
 }
 
 .score-text {

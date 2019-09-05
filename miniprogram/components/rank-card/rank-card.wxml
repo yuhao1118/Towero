@@ -1,5 +1,5 @@
 <view class="list">
-    <van-cell wx:if="{{rankInfo.team_info && rankInfo.rank}}" use-label-slot clickable>
+    <van-cell wx:if="{{rankInfo.team_number && rankInfo.rank}}" bind:click="onClick" use-label-slot clickable is-link>
         <view slot="title">
             <van-row>
                 <!-- 左侧排名和playoff -->
@@ -14,7 +14,10 @@
                 <!-- 中间队伍信息和得分简介 -->
                 <van-col span="20">
                     <view class="team-info-container">
-                        <view class='team-name'>{{rankInfo.team_info.nickname}} {{rankInfo.team_info.team_number}}</view>
+                        <!-- 临时队号没有队伍信息，只显示Team 9xxx -->
+                        <view class='team-name'>
+                            {{rankInfo.team_info.nickname ? rankInfo.team_info.nickname : 'Team '}} {{rankInfo.team_number}}
+                        </view>
                         <view class="rank-score">{{rankInfo.score_str}}</view>
                     </view>
                 </van-col>
