@@ -1,0 +1,9 @@
+@import "/app.wxss";
+
+.loading-container {
+    display: flex;
+    flex: row;
+    justify-content: center;
+    align-items: center;
+    height: 46px;
+}

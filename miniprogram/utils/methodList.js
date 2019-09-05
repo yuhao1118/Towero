@@ -71,6 +71,17 @@ function dateReplace(dateStr) {
   var res = tempArr[1] + ' ' + tempArr[2]; // 只返回日月即可，年份由另外的属性获取
   return res;
 }
+//  去除字符串中<b> </b>
+function brFilter(str) {
+  var temp = str;
+  if (temp) {
+    temp = temp.replace(/<b>/g, '');
+    temp = temp.replace(/<\/b>/g, '');
+    return temp;
+  } else {
+    return '';
+  }
+}
 
 module.exports = {
   getEventYears: getEventYears,
@@ -79,5 +90,6 @@ module.exports = {
   dateReplace: dateReplace,
   teamSort: teamSort,
   oprSort: oprSort,
-  matchSort: matchSort
+  matchSort: matchSort,
+  brFilter: brFilter
 };

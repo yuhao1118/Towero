@@ -4,11 +4,11 @@
         <van-col span="3">
             <view class='alliance-level'>{{allianceInfo.status.level}}</view>
         </van-col>
-        <van-col span="5">
+        <van-col span="{{allianceInfo.picks.length == 3 ? '6' : '5'}}">
             <view class='alliance-title'>{{allianceInfo.name}}</view>
         </van-col>
         <!-- 联盟队伍 -->
-        <van-col span="{{16/allianceInfo.picks.length}}" wx:for="{{allianceInfo.picks}}" wx:key="{{index}}" id="{{index}}">
+        <van-col span="{{allianceInfo.picks.length == 3 ? '5' : '4'}}" wx:for="{{allianceInfo.picks}}" wx:key="{{index}}" id="{{index}}">
             <view bind:tap="onClick" id="{{index}}" class='alliance-team' hover-class="hover" hover-stay-time="50">
                 {{allianceInfo.picks_team_number[index]}}
             </view>

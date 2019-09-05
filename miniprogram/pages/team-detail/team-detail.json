@@ -2,6 +2,7 @@
   "usingComponents": {
     "team-index": "/components/team-index/team-index",
     "event-card": "/components/event-card/event-card",
+    "loading": "/components/loading/loading",
     "van-tab": "/miniprogram_npm/vant-weapp/tab/index",
     "van-tabs": "/miniprogram_npm/vant-weapp/tabs/index"
   }

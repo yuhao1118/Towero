@@ -39,7 +39,7 @@ Page({
     var teamKey = this.data.teamKey
 
     wx.navigateTo({
-      url: `/pages/team-event/team-event?team_key=${teamKey}&event_key=${eventKey}`
+      url: `/pages/team-event/team-event?team_key=${teamKey}&event_key=${eventKey}&page_from=team`
     });
   },
 

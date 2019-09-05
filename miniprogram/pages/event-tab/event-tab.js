@@ -5,7 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    emptyInfo: {
+        show: true, // 是否显示该页
+        status: true, // true--显示load false--显示msg
+        msg: "Hello" // msg提示信息
+    }
   },
 
   /**

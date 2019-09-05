@@ -1,24 +1,27 @@
 <view class="container">
-  <!-- 队伍的比赛详细信息Tab -->
-  <van-tabs color="#3f51b5" active="{{ activeTabs }}" bind:change="onTabChange">
-    <!-- 10px留白 -->
-    <view class="tab-margin"></view>
-    <!-- Summary 选项卡 -->
-    <van-tab title="Summary">
-      <summary-card></summary-card>
-    </van-tab>
-    <!-- Matches 选项卡 -->
-    <van-tab title="Matches">
-      <title-bar />
-      <match-card></match-card>
-    </van-tab>
-    <!-- Stats 选项卡 -->
-    <van-tab title="Stats">
-      <stat-card></stat-card>
-    </van-tab>
-    <!-- Awards 选项卡 -->
-    <van-tab title="Awards">
-      <award-card></award-card>
-    </van-tab>
-  </van-tabs>
+    <!-- 队伍的比赛详细信息Tab -->
+    <van-tabs swipeable color="#3f51b5" active="{{ activeTabs }}" bind:change="onTabChange">
+        <!-- 10px留白 -->
+        <view class="tab-margin"></view>
+        <!-- Summary 选项卡 -->
+        <van-tab title="Summary">
+            <loading hidden="{{summaryInfo}}" />
+            <summary-card summaryInfo="{{summaryInfo}}" awardsArray="{{awardsArray}}" />
+        </van-tab>
+        <!-- Matches 选项卡 -->
+        <van-tab title="Matches">
+            <loading hidden="{{matchInfo}}" />
+            <match-index matchInfo="{{matchInfo}}" curTeam="{{teamInfo.team_number}}" bind:event="onTeamCardClick"/>
+        </van-tab>
+        <!-- Stats 选项卡 -->
+        <van-tab title="Stats">
+            <loading hidden="{{oprObj}}" />
+            <stat-card oprObj="{{oprObj}}" />
+        </van-tab>
+        <!-- Awards 选项卡 -->
+        <van-tab title="Awards">
+            <loading hidden="{{awardsArray}}" />            
+            <award-card wx:for="{{awardsArray}}" wx:key="{{index}}" id="{{index}}" bind:event="onTeamCardClick" awardInfo="{{awardsArray[index]}}" />
+        </van-tab>
+    </van-tabs>
 </view>

@@ -1,10 +1,10 @@
-// components/stat-card/stat-card.js
+// components/loading/loading.js
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    oprObj : Object
+    hidden: Boolean
   },
 
   /**

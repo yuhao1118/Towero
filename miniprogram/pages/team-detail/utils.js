@@ -16,13 +16,19 @@ var utils = {
       that.setData({
         teamInfo: res
       });
+
+      // 设置页面标题
+      var title = 'Team ' + app.jsonSafeProp('res.team_number', res);
+      wx.setNavigationBarTitle({
+        title: title
+      });
     });
   },
 
   // 获取eventYears函数
   eventYears: function(that) {
     var teamKey = that.data.teamKey;
-    
+
     app.httpsRequest(`/team/${teamKey}/events/keys`, res => {
       var eventYears = getEventYears(res);
       var selectedYear = eventYears.length > 0 ? eventYears[0] : null; // 设置null而不是undefined
@@ -81,6 +87,8 @@ var utils = {
 
   // 页面跳转携参函数
   linkParam: function(options, that) {
+    var teamKey = options.team_key;
+
     that.setData({
       teamKey: options.team_key
     });
@@ -88,5 +96,5 @@ var utils = {
 };
 
 module.exports = {
-    utils: utils
+  utils: utils
 };

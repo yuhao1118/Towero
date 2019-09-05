@@ -4,7 +4,7 @@
         <van-col span="5">
             <view class="match-info-container">
                 <view class="match-number">{{type}}</view>
-                <view class="match-number">{{match.match_number}}</view>
+                <view class="match-number">{{type != 'Qual' ? match.set_number+'-'+match.match_number : match.match_number}}</view>
             </view>
         </van-col>
         <!-- 中间参赛队伍 -->

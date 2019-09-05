@@ -1,5 +1,5 @@
 /*  赛事详情页
-    启动参数：1. event_key  --  e.g. frc6766
+    启动参数：1. event_key  --  e.g. 2019casf
     示例：/pages/event-detail/event-detail?event_key=2019casf
 */
 import { utils } from '/utils';
@@ -47,11 +47,8 @@ Page({
   onTabChange: function(event) {
     var activeTabs = event.detail.index;
 
-    // Info taby页
-    if (activeTabs == 0) {
-    }
     // Teams Tab页
-    else if (activeTabs == 1) {
+    if (activeTabs == 1) {
       utils.teamInfo(this);
     }
     // Rankings Tab页
@@ -83,8 +80,10 @@ Page({
   // 点击team-card事件，自动返回teamKey
   onTeamCardClick: function(event) {
     var teamKey = event.detail;
+    var eventKey = this.data.eventKey;
+    
     wx.navigateTo({
-      url: `/pages/team-detail/team-detail?team_key=${teamKey}`
+      url: `/pages/team-event/team-event?team_key=${teamKey}&event_key=${eventKey}&page_from=event`
     });
   },
 

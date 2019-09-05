@@ -1,0 +1,3 @@
+<view class="loading-container" hidden="{{hidden}}">
+    <van-loading type="spinner" />
+</view>

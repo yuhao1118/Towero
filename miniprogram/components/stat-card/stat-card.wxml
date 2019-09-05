@@ -1,8 +1,8 @@
 <view class="list">
     <!-- 队伍比赛统计信息 -->
     <van-cell-group>
-        <van-cell clickable="{{true}}" size="large" title="OPR" label="100.97" />
-        <van-cell clickable="{{true}}" size="large" title="DPR" label="100.97" />
-        <van-cell clickable="{{true}}" size="large" title="CCWM" label="100.97" />
+        <van-cell wx:if="{{oprObj.opr}}" clickable="{{true}}" size="large" title="OPR" label="{{oprObj.opr}}" />
+        <van-cell wx:if="{{oprObj.dpr}}" clickable="{{true}}" size="large" title="DPR" label="{{oprObj.dpr}}" />
+        <van-cell wx:if="{{oprObj.ccwm}}" clickable="{{true}}" size="large" title="CCWM" label="{{oprObj.ccwm}}" />
     </van-cell-group>
 </view>

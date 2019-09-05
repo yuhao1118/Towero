@@ -1,2 +1,3 @@
-<!--pages/event-tab/event-tab.wxml-->
-<text>pages/event-tab/event-tab.wxml</text>
+<view>
+    <empty-pages emptyInfo="{{emptyInfo}}"></empty-pages>
+</view>

@@ -1,20 +1,22 @@
 <view class="list">
-    <!-- Info组 -->
+    <!-- Overview组 -->
     <van-cell-group>
-        <van-cell clickable="{{true}}" size="large" title="Status" label="Won the event" />
-        <van-cell clickable="{{true}}" size="large" title="Awards" label="Won 2 awards" />
+        <van-cell wx:if="{{summaryInfo.playoff_status_str && summaryInfo.playoff_status_str != '--'}}" clickable="{{true}}" size="large" title="Status" label="{{summaryInfo.playoff_status_str}}" />
+        <van-cell wx:if="{{awardsArray.length > 0}}" clickable="{{true}}" size="large" title="Awards" label="{{'Won '+awardsArray.length+' award'+(awardsArray.length > 1 ? 's' : ' ')}}" />
     </van-cell-group>
     <!-- Playoffs组 -->
-    <title-bar title="Playoffs"/>
-    <van-cell-group>
-        <van-cell clickable="{{true}}" size="large" title="Alliance" label="1st Pick of Alliance 1" />
-        <van-cell clickable="{{true}}" size="large" title="Record" label="6-0-0" />
-    </van-cell-group>
+    <title-bar title="Playoffs" wx:if="{{summaryInfo.alliance_status_str && summaryInfo.alliance_status_str != '--'}}">
+        <van-cell-group>
+            <van-cell wx:if="{{summaryInfo.alliance_status_str && summaryInfo.alliance_status_str != '--'}}" clickable="{{true}}" size="large" title="Alliance" label="{{summaryInfo.alliance_status_str}}" />
+            <van-cell wx:if="{{summaryInfo.playoff.record.wins >= 0 && summaryInfo.playoff.record.ties >= 0 && summaryInfo.playoff.record.losses >= 0}}" clickable="{{true}}" size="large" title="Record" label="{{summaryInfo.playoff.record.wins}}-{{summaryInfo.playoff.record.ties}}-{{summaryInfo.playoff.record.losses}}" />
+        </van-cell-group>
+    </title-bar>
     <!-- Qualifications组 -->
-    <title-bar title="Qualifications组"/>
-    <van-cell-group>
-        <van-cell clickable="{{true}}" size="large" title="Rank" label="2nd (of 34)" />
-        <van-cell clickable="{{true}}" size="large" title="Record" label="10-2-0" />
-        <van-cell clickable="{{true}}" size="large" title="Ranking Breakdown" label="Total Ranking Points: 30, Ranking Score: 1.77, Cargo: 318, Hatch Panel: 150, HAB Climb: 171, Sandstorm Bonus: 129" />
-    </van-cell-group>
+    <title-bar title="Qualifications" wx:if="{{summaryInfo.qual}}">
+        <van-cell-group>
+            <van-cell wx:if="{{summaryInfo.qual.ranking.rank}}" clickable="{{true}}" size="large" title="Rank" label="{{summaryInfo.qual.ranking.rank}} / {{summaryInfo.qual.num_teams}}" />
+            <van-cell wx:if="{{summaryInfo.qual.ranking.record.wins >= 0 && summaryInfo.qual.ranking.record.ties >= 0 && summaryInfo.qual.ranking.record.losses >= 0}}" clickable="{{true}}" size="large" title="Record" label="{{summaryInfo.qual.ranking.record.wins}}-{{summaryInfo.qual.ranking.record.ties}}-{{summaryInfo.qual.ranking.record.losses}}" />
+            <van-cell wx:if="{{summaryInfo.sort_orders_str}}" clickable="{{true}}" size="large" title="Ranking Breakdown" label="{{summaryInfo.sort_orders_str}}" />
+        </van-cell-group>
+    </title-bar>
 </view>

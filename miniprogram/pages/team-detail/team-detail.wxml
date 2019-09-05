@@ -1,14 +1,16 @@
 <view class="container">
     <!-- 队伍详细信息Tab -->
-    <van-tabs color="#3f51b5" active="{{ activeTabs }}" bind:change="onTabChange">
+    <van-tabs swipeable color="#3f51b5" active="{{ activeTabs }}" bind:change="onTabChange">
         <!-- 留白 -->
         <view class="tab-margin"></view>
         <!-- Team 选项卡 -->
         <van-tab title="Team">
+            <loading hidden="{{teamInfo}}" />
             <team-index teamInfo="{{teamInfo}}" eventYears="{{eventYears}}" selectedYear="{{selectedYear}}" bind:event="onSelectYear"></team-index>
         </van-tab>
         <!-- Event 选项卡 -->
         <van-tab title="Event">
+            <loading hidden="{{eventInfoArray}}" />
             <event-card wx:for="{{eventInfoArray}}" wx:key="{{index}}" id="{{index}}" eventInfo="{{eventInfoArray[index]}}" bind:event="onEventCardClick" />
         </van-tab>
     </van-tabs>

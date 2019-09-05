@@ -35,6 +35,12 @@ var utils = {
       that.setData({
         eventInfo: res
       });
+
+      // 设置页面标题
+      var title = app.jsonSafeProp('res.name', res);
+      wx.setNavigationBarTitle({
+        title: title
+      });
     });
   },
 
@@ -310,7 +316,7 @@ var utils = {
   // 页面跳转携参函数
   linkParam: function(options, that) {
     that.setData({
-      eventKey: options.event_key
+      eventKey: options.event_key,
     });
   }
 };
