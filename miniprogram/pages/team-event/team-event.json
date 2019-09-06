@@ -6,8 +6,10 @@
     "stat-card": "/components/stat-card/stat-card",
     "title-bar": "/components/title-bar/title-bar",
     "loading": "/components/loading/loading",
+    "fab-button": "/components/fab-button/fab-button",
     "van-tab": "/miniprogram_npm/vant-weapp/tab/index",
     "van-tabs": "/miniprogram_npm/vant-weapp/tabs/index",
+    "van-transition": "/miniprogram_npm/vant-weapp/transition/index",
     "van-collapse": "/miniprogram_npm/vant-weapp/collapse/index",
     "van-collapse-item": "/miniprogram_npm/vant-weapp/collapse-item/index"
   }

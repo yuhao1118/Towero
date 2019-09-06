@@ -1,2 +1,3 @@
-<!--pages/team-tab/team-tab.wxml-->
-<text>pages/team-tab/team-tab.wxml</text>
+<view class="container">
+    <van-search shape="round" value="{{ searchValue }}" placeholder="请输入搜索关键词" show-action bind:search="onSearch" bind:cancel="onCancel" />
+</view>

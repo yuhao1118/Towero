@@ -1,3 +1,2 @@
 <view>
-    <empty-pages emptyInfo="{{emptyInfo}}"></empty-pages>
 </view>

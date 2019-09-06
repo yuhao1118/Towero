@@ -20,7 +20,8 @@ Page({
     activeTabs: 0, // 当前激活的tab
     teamKey: String, // team_key -- e.g. frc6766 用于索引队伍信息
     eventKey: String, // event_key -- e.g. 2019hiho 用于索引赛事信息
-    pageFrom: String, // 从哪个页面跳转而来。可选值: team event team_match(从当前页的matches标签页跳转)
+    pageFrom: String, // 从哪个页面跳转而来。可选值: team event
+    fabIcon: String, // 悬浮按钮的图标，由pageFrom决定
     teamInfo: Object, // 存放队伍信息
     eventInfo: Object, // 存放赛事信息
     teamInfoObj: Object, // 存放所有队伍信息的对象，以team_key为属性
@@ -70,12 +71,12 @@ Page({
 
   // 点击team-card事件，自动返回teamKey
   onTeamCardClick: function(event) {
-    var teamKey = event.detail;
-    var eventKey = this.data.eventKey;
+    utils.teamCardClick(event, this);
+  },
 
-    wx.navigateTo({
-      url: `/pages/team-event/team-event?team_key=${teamKey}&event_key=${eventKey}&page_from=match`
-    });
+  // 从该页跳转到队伍信息页或赛事信息页的事件
+  onNaviClick: function() {
+    utils.naviClick(this);
   },
 
   // 用户点击右上角分享

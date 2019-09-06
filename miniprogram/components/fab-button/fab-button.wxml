@@ -1,0 +1,4 @@
+<view class="circle" bind:tap="onClick" hover-class="click" hover-stay-time="50">
+    <van-icon wx:if="{{!isClicked}}" name="{{icon}}-o" size="20px" color="#fff" />
+    <van-icon wx:if="{{isClicked}}" name="{{icon}}" size="20px" color="#fff" />
+</view>

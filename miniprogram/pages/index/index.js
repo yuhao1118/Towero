@@ -9,6 +9,11 @@ Page({
 
   onLoad: function() {},
 
+  // 更新tabbar选中态
+  onShow: function() {
+    this.getTabBar().init();
+  },
+
   onTeamNumberInput: function(event) {
     this.setData({
       teamNumber: event.detail.value

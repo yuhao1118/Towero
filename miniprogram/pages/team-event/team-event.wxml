@@ -11,7 +11,7 @@
         <!-- Matches 选项卡 -->
         <van-tab title="Matches">
             <loading hidden="{{matchInfo}}" />
-            <match-index matchInfo="{{matchInfo}}" curTeam="{{teamInfo.team_number}}" bind:event="onTeamCardClick"/>
+            <match-index matchInfo="{{matchInfo}}" curTeam="{{teamInfo.team_number}}" bind:event="onTeamCardClick" />
         </van-tab>
         <!-- Stats 选项卡 -->
         <van-tab title="Stats">
@@ -20,8 +20,10 @@
         </van-tab>
         <!-- Awards 选项卡 -->
         <van-tab title="Awards">
-            <loading hidden="{{awardsArray}}" />            
+            <loading hidden="{{awardsArray}}" />
             <award-card wx:for="{{awardsArray}}" wx:key="{{index}}" id="{{index}}" bind:event="onTeamCardClick" awardInfo="{{awardsArray[index]}}" />
         </van-tab>
     </van-tabs>
 </view>
+<!-- 悬浮导航按钮 -->
+<fab-button bind:click="onNaviClick" icon="{{fabIcon}}" />

@@ -75,6 +75,10 @@ var utils = {
         that.setData({
           summaryInfo: res
         });
+      } else {
+        that.setData({
+          summaryInfo: {}
+        });
       }
     });
   },
@@ -242,12 +246,57 @@ var utils = {
     });
   },
 
+  //   跳转到下一个team-event页函数
+  teamCardClick: function(event, that) {
+    var teamKey = event.detail;
+    var eventKey = that.data.eventKey;
+    var pageFrom = that.data.pageFrom;
+
+    // team-event跳转到另一个team-event的,pageFrom参数继承于父页
+    wx.navigateTo({
+      url: `/pages/team-event/team-event?team_key=${teamKey}&event_key=${eventKey}&page_from=${pageFrom}`
+    });
+  },
+
+  //   跳转队伍/赛事信息函数
+  naviClick: function(that) {
+    var pageFrom = that.data.pageFrom;
+    if (pageFrom == 'team') {
+      // 从team来的去event页
+
+      var eventKey = that.data.eventKey;
+      wx.navigateTo({
+        url: `/pages/event-detail/event-detail?event_key=${eventKey}`
+      });
+    }
+
+    if (pageFrom == 'event') {
+      // 从event来的去team页
+
+      var teamKey = that.data.teamKey;
+      wx.navigateTo({
+        url: `/pages/team-detail/team-detail?team_key=${teamKey}`
+      });
+    }
+  },
+
   // 页面跳转携参函数
   linkParam: function(options, that) {
+    var fabIcon = '';
+
+    if (options.page_from == 'team') {
+      fabIcon = 'label';
+    }
+
+    if (options.page_from == 'event') {
+      fabIcon = 'friends';
+    }
+
     that.setData({
       teamKey: options.team_key,
       eventKey: options.event_key,
-      pageFrom: options.page_from
+      pageFrom: options.page_from,
+      fabIcon: fabIcon
     });
   }
 };

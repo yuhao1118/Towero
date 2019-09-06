@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/team-tab/team-tab",
     "pages/event-tab/event-tab",
+    "pages/index/index",
     "pages/settting-tab/setting-tab",
     "pages/team-detail/team-detail",
     "pages/event-detail/event-detail",
@@ -16,33 +16,22 @@
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
-    "color": "#8a8a8a",
-    "selectedColor": "#3f51b5",
-    "backgroundColor": "#fff",
+    "custom": true,
+    "color": "#000000",
+    "selectedColor": "#000000",
+    "backgroundColor": "#000000",
     "list": [
       {
-        "text": "Home",
-        "pagePath": "pages/index/index",
-        "iconPath": "images/tab-bar/default/home.png",
-        "selectedIconPath": "images/tab-bar/selected/home.png"
+        "pagePath": "pages/team-tab/team-tab"
       },
       {
-        "text": "Events",
-        "pagePath": "pages/event-tab/event-tab",
-        "iconPath": "images/tab-bar/default/events.png",
-        "selectedIconPath": "images/tab-bar/selected/events.png"
+        "pagePath": "pages/event-tab/event-tab"
       },
       {
-        "text": "Teams",
-        "pagePath": "pages/team-tab/team-tab",
-        "iconPath": "images/tab-bar/default/teams.png",
-        "selectedIconPath": "images/tab-bar/selected/teams.png"
+        "pagePath": "pages/index/index"
       },
       {
-        "text": "Settings",
-        "pagePath": "pages/settting-tab/setting-tab",
-        "iconPath": "images/tab-bar/default/settings.png",
-        "selectedIconPath": "images/tab-bar/selected/settings.png"
+        "pagePath": "pages/settting-tab/setting-tab"
       }
     ]
   },
