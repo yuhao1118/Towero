@@ -79,12 +79,7 @@ Page({
 
   // 点击team-card事件，自动返回teamKey
   onTeamCardClick: function(event) {
-    var teamKey = event.detail;
-    var eventKey = this.data.eventKey;
-    
-    wx.navigateTo({
-      url: `/pages/team-event/team-event?team_key=${teamKey}&event_key=${eventKey}&page_from=event`
-    });
+    utils.teamCardClick(event, this);       // 跳转到team-event页
   },
 
   // 用户点击右上角分享

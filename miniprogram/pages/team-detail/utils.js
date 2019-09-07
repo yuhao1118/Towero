@@ -78,10 +78,14 @@ var utils = {
     });
   },
 
-  // tab切换函数
-  tabChange: function(event, that) {
-    that.setData({
-      activeTabs: event.detail.index
+  //   跳转到下一个team-event页函数
+  teamCardClick: function(event, that) {
+    var eventKey = event.detail;
+    var teamKey = that.data.teamKey;
+
+    // team-event跳转到另一个team-event的,pageFrom参数继承于父页
+    wx.navigateTo({
+      url: `/pages/team-event/team-event?team_key=${teamKey}&event_key=${eventKey}&page_from=team`
     });
   },
 

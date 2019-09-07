@@ -4,7 +4,6 @@
 */
 import { utils } from '/utils';
 
-
 /* API 列表 */
 // 1. /team/{team_key}                          通过team_key查询队伍信息
 // 2. /team/{team_key}/events/keys              通过team_key查询所有event_key
@@ -30,17 +29,14 @@ Page({
 
   // 切换Tab事件
   onTabChange: function(event) {
-    utils.tabChange(event, this); //   刷新tab切换数据
+    this.setData({
+        activeTabs: event.detail.index
+      });
   },
 
   // 点击event-card事件，自动返回eventKey
   onEventCardClick: function(event) {
-    var eventKey = event.detail
-    var teamKey = this.data.teamKey
-
-    wx.navigateTo({
-      url: `/pages/team-event/team-event?team_key=${teamKey}&event_key=${eventKey}&page_from=team`
-    });
+    utils.teamCardClick(event, this);   // 跳转到team-event页
   },
 
   // 切换年份选择器事件

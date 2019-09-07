@@ -1,3 +1,7 @@
 <view class="container">
-    <van-search shape="round" value="{{ searchValue }}" placeholder="请输入搜索关键词" show-action bind:search="onSearch" bind:cancel="onCancel" />
+    <van-search shape="round" value="{{ searchValue }}" placeholder="Search Teams" show-action bind:search="onSearch" bind:cancel="onSearchCanel" />
+    <team-card wx:if="{{isSearch && searchTeamArray.length > 0}}" wx:for="{{searchTeamArray}}" wx:key="{{index}}" id="{{index}}" teamInfo="{{searchTeamArray[index]}}" bind:event="onTeamCardClick" />
+    <team-card wx:if="{{!isSearch && defaultTeamArray.length > 0}}" wx:for="{{defaultTeamArray}}" wx:key="{{index}}" id="{{index}}" teamInfo="{{defaultTeamArray[index]}}" bind:event="onTeamCardClick"/>
+    <loading hidden="{{isSearch && lastSearchFinish}}" />
+    <loading hidden="{{!isSeach && lastLoadFinish}}" />
 </view>

@@ -9,9 +9,8 @@ Page({
 
   onLoad: function() {},
 
-  // 更新tabbar选中态
   onShow: function() {
-    this.getTabBar().init();
+    this.getTabBar().init();      // 更新tabbar选中态
   },
 
   onTeamNumberInput: function(event) {

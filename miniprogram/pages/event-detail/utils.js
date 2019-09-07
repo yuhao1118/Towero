@@ -313,6 +313,17 @@ var utils = {
     });
   },
 
+  //   跳转到下一个team-event页函数
+  teamCardClick: function(event, that) {
+    var teamKey = event.detail;
+    var eventKey = that.data.eventKey;
+
+    // team-event跳转到另一个team-event的,pageFrom参数继承于父页
+    wx.navigateTo({
+      url: `/pages/team-event/team-event?team_key=${teamKey}&event_key=${eventKey}&page_from=event`
+    });
+  },
+
   // 页面跳转携参函数
   linkParam: function(options, that) {
     that.setData({

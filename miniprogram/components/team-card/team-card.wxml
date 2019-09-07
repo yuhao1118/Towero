@@ -10,7 +10,7 @@
                 <van-col span="20">
                     <view class="team-info-container">
                         <text class="team-name">{{teamInfo.nickname}}</text>
-                        <text class="team-location">{{teamInfo.city}}, {{teamInfo.state_prov}}, {{teamInfo.country}}</text>
+                        <text wx:if="{{teamInfo.city && teamInfo.state_prov && teamInfo.country}}" class="team-location">{{teamInfo.city}}, {{teamInfo.state_prov}}, {{teamInfo.country}}</text>
                     </view>
                 </van-col>
             </van-row>
