@@ -2,7 +2,7 @@
   "pages": [
     "pages/team-tab/team-tab",
     "pages/event-tab/event-tab",
-    "pages/index/index",
+    "pages/favor/favor",
     "pages/settting-tab/setting-tab",
     "pages/team-detail/team-detail",
     "pages/event-detail/event-detail",
@@ -28,7 +28,7 @@
         "pagePath": "pages/event-tab/event-tab"
       },
       {
-        "pagePath": "pages/index/index"
+        "pagePath": "pages/favor/favor"
       },
       {
         "pagePath": "pages/settting-tab/setting-tab"

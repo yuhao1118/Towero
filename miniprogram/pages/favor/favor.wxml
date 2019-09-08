@@ -1,0 +1,10 @@
+<view class="container">
+    <view class="list tab-margin-top">
+        <title-bar wx:if="{{teamInfoArray.length > 0}}" title="Teams">
+            <team-card wx:for="{{teamInfoArray}}" wx:key="{{index}}" id="{{index}}" teamInfo="{{teamInfoArray[index]}}" bind:event="onTeamCardClick" />
+        </title-bar>
+        <title-bar wx:if="{{eventInfoArray.length > 0}}" title="Events">
+            <event-card wx:for="{{eventInfoArray}}" wx:key="{{index}}" id="{{index}}" eventInfo="{{eventInfoArray[index]}}" bind:event="onEventCardClick" />
+        </title-bar>
+    </view>
+</view>

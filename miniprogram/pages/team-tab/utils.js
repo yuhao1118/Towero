@@ -45,8 +45,8 @@ var utils = {
     var searchValue = event.detail; // 获取到的搜索字符串
     var db = wx.cloud.database();
     var _ = db.command; // 数据库高级功能command
-    var name = searchValue.match(/^[A-Za-z][A-Za-z\s]*[A-Za-z]$/gi);    // 模糊匹配队名正则表达式
-    var name_regexp = name ? name.toString() : searchValue  // 数据库查询正则表达式接收匹配后的字符串
+    var name = searchValue.match(/^[A-Za-z][A-Za-z\s]*[A-Za-z]$/gi); // 模糊匹配队名正则表达式
+    var name_regexp = name ? name.toString() : searchValue; // 数据库查询正则表达式接收匹配后的字符串
 
     that.setData({
       lastSearchFinish: false, // 加载loading
@@ -97,10 +97,31 @@ var utils = {
   },
 
   //   启动初始化函数
-  load: function(that){
-      that.setData({
-          isIphoneX : app.data.isIphoneX
-      })
+  load: function(options, that) {
+    // 处理从分享卡片进入的小程序链接参数
+    // link_type        --      要跳转的页面类型，可选值：team，event，team_event
+    // team_key         --      team_key数据
+    // event_key        --      event_key数据
+    var { link_type, team_key, event_key } = options;
+
+    // 根据不同link_type跳转到不同类型的页面
+    if (link_type == 'team') {
+      wx.navigateTo({
+        url: `/pages/team-detail/team-detail?team_key=${team_key}`
+      });
+    } else if (link_type == 'event') {
+      wx.navigateTo({
+        url: `/pages/event-detail/event-detail?event_key=${event_key}`
+      });
+    } else if (link_type == 'team_event') {
+      wx.navigateTo({
+        url: `/pages/team-event/team-event?team_key=${team_key}&event_key=${event_key}&page_from=team`
+      });
+    }
+
+    that.setData({
+      isIphoneX: app.data.isIphoneX
+    });
   }
 };
 

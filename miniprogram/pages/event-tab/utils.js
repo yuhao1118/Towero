@@ -165,6 +165,7 @@ var utils = {
       var start_year = 1992; // 比赛成立年份
       var index = that.data.scrollIndex;
 
+      // 创建picker显示数组，倒叙
       for (var i = max_season; i >= start_year; i--) {
         eventYearsArray.push(i); // 添加赛事年份数组
       }

@@ -1,7 +1,7 @@
 App({
   // 小程序全局数据
   data: {
-    isIphoneX: false,   //为iPhone X做底部tabbar适配
+    isIphoneX: false, //为iPhone X做底部tabbar适配
     loginInfo: Object /* 用户登录信息
                                     {
                                         appid : String,
@@ -107,6 +107,141 @@ App({
   //     });
   //   },
 
+  // 更新云收藏功能
+  // teamKeyArray           --      存放team_key的数组（只有可能从数据库传来）
+  // eventKeyArray          --      存放event_key的数组（只有可能从数据库传来）
+  // type                   --      更新数据的类型，可选值：add，delete，将影响toast信息
+  // onSuccess              --      更新成功时回调
+  updateFavor: function(teamKeyArray, eventKeyArray, type, onSuccess) {
+    var db = wx.cloud.database();
+    var openid = this.data.loginInfo.openid;
+
+    db.collection('favor')
+      .doc(openid)
+      .update({
+        data: {
+          teams: teamKeyArray,
+          events: eventKeyArray
+        },
+        success: res => {
+          console.log('update success');
+
+          // 如果时添加后更新
+          if (type == 'add') {
+            wx.showToast({
+              title: 'Favor success',
+              icon: 'none',
+              duration: 2000
+            });
+          }
+          // 如果是删除后更新
+          else if (type == 'delete') {
+            wx.showToast({
+              title: 'Delete success',
+              icon: 'none',
+              duration: 2000
+            });
+          }
+          // 成功回调
+          onSuccess();
+        }
+      });
+  },
+
+  // 获取云收藏
+  // onSuccess  -- 添加成功回调
+  getFavor: function(onSuccess) {
+    var db = wx.cloud.database();
+    var _ = db.command; // 数据库高级功能command
+    var openid = this.data.loginInfo.openid;
+
+    db.collection('favor')
+      .where({
+        _id: _.eq(openid)
+      })
+      .get({
+        success: res => {
+          if (res.data.length > 0) {
+            console.log('Get success');
+
+            // 向回调函数传递teams和events数组
+            onSuccess(res.data[0].teams, res.data[0].events);
+          }
+        }
+      });
+  },
+
+  // 从数据库查找一个给定的key
+  // type       -- 要查找的key的类型，可选值event，team
+  // key        -- 要查找的key，event_key team_key
+  // onSuccess  -- 查找成功回调，同时传递是否存在的布尔变量
+  getKey: function(type, key, onSuccess) {
+    //   先请求数据库获取当前收藏内容
+    this.getFavor((teamKeyArray, eventKeyArray) => {
+      if (type == 'team') {
+        if (teamKeyArray.indexOf(key) == -1) {
+          onSuccess(false); // 未查找到
+        } else {
+          onSuccess(true); // 查找到
+        }
+      }
+
+      if (type == 'event') {
+        if (eventKeyArray.indexOf(key) == -1) {
+          onSuccess(false); // 未查找到
+        } else {
+          onSuccess(true); // 查找到
+        }
+      }
+    });
+  },
+
+  // 从数据库添加一个给定的key
+  // type       -- 要添加的key的类型，可选值event，team
+  // key        -- 要添加的key，event_key team_key
+  // onSuccess  -- 添加成功回调
+  addFavor: function(type, key, onSuccess) {
+    //   先请求数据库获取当前收藏内容
+    this.getFavor((teamKeyArray, eventKeyArray) => {
+      // 数据库中搜索team_key
+      if (type == 'team' && teamKeyArray.indexOf(key) == -1) {
+        teamKeyArray.push(key);
+      }
+
+      // 数据库中搜索event_key
+      if (type == 'event' && eventKeyArray.indexOf(key) == -1) {
+        eventKeyArray.push(key);
+      }
+
+      // 更新数据库数据
+      this.updateFavor(teamKeyArray, eventKeyArray, 'add', onSuccess);
+    });
+  },
+
+  // 从数据库删除一个给定的key
+  // type       -- 要删除的key的类型，可选值event，team
+  // key        -- 要删除的key，event_key team_key
+  // onSuccess  -- 添加成功回调
+  deleteFavor: function(type, key, onSuccess) {
+    //   先请求数据库获取当前收藏内容
+    this.getFavor((teamKeyArray, eventKeyArray) => {
+      // 数据库中搜索team_key
+      if (type == 'team' && teamKeyArray.indexOf(key) != -1) {
+        var index = teamKeyArray.indexOf(key);
+        teamKeyArray.splice(index, 1);
+      }
+
+      // 数据库中搜索event_key
+      if (type == 'event' && eventKeyArray.indexOf(key) != -1) {
+        var index = eventKeyArray.indexOf(key);
+        eventKeyArray.splice(index, 1);
+      }
+
+      // 更新数据库数据
+      this.updateFavor(teamKeyArray, eventKeyArray, 'delete', onSuccess);
+    });
+  },
+
   // Json嵌套对象属性检查函数
   // path           -- 嵌套对象的路径（包括起始对象）
   // rawObject      -- 起始对象
@@ -144,12 +279,44 @@ App({
         // 请求成功获取到用户登录信息
         // 保存用户登录信息
         this.data.loginInfo = res.result;
+
+        // 为当前用户在数据库中创建收藏对象（如果不存在）
+        var db = wx.cloud.database();
+        var _ = db.command; // 数据库高级功能command
+        var openid = res.result.openid;
+
+        // 先通过id查找
+        db.collection('favor')
+          .where({
+            _id: _.eq(openid)
+          })
+          .get({
+            success: res => {
+              // 说明不存在收藏对象
+              if (res.data.length == 0) {
+                console.log('favor obj not exist, adding...');
+                //   添加收藏对象
+                db.collection('favor').add({
+                  data: {
+                    _id: res.result.openid,
+                    teams: [],
+                    events: []
+                  },
+                  success: res => {
+                    // 添加成功
+                    console.log('add success');
+                  }
+                });
+              }
+            }
+          });
       }
     });
   },
 
   // 小程序显示阶段触发函数
   onShow: function() {
+    //   为iPhone X做tabbar适配
     wx.getSystemInfo({
       success: res => {
         if (res.model.indexOf('iPhone X') > -1) {

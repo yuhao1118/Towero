@@ -1,11 +1,10 @@
-.filter{
-    display: flex;
-    height: 54px;
-    align-items: center;
-    justify-content: center;
-    padding-left: 16px;
+.filter {
+  display: flex;
+  height: 54px;
+  align-items: center;
+  justify-content: center;
 }
 
 .picker-color {
-    color: #3f51b5;
+  color: #3f51b5;
 }

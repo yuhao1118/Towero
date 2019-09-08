@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "Teams",
   "usingComponents": {
     "van-search": "/miniprogram_npm/vant-weapp/search/index",
     "team-card": "/components/team-card/team-card",

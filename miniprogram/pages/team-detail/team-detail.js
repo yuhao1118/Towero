@@ -17,6 +17,7 @@ Page({
     teamInfo: Object, // 从缓存中索引到的队伍信息
     eventYears: Array, // eventKeys处理去重得到的队伍参赛年份数组
     selectedYear: Number, // 当前选中的参赛年份（指定一年）
+    isFavor: false, // 当前页是否被收藏
     eventInfoWithTitleArray: Array // 从缓存中索引到的赛事信息数组，title-bar分类
   },
 
@@ -30,13 +31,18 @@ Page({
   // 切换Tab事件
   onTabChange: function(event) {
     this.setData({
-        activeTabs: event.detail.index
-      });
+      activeTabs: event.detail.index
+    });
   },
 
   // 点击event-card事件，自动返回eventKey
   onEventCardClick: function(event) {
-    utils.teamCardClick(event, this);   // 跳转到team-event页
+    utils.teamCardClick(event, this); // 跳转到team-event页
+  },
+
+  // 点击收藏按钮事件
+  onFavorClick: function() {
+    utils.favorClick(this);
   },
 
   // 切换年份选择器事件
@@ -46,5 +52,7 @@ Page({
   },
 
   // 用户点击右上角分享
-  onShareAppMessage: function() {}
+  onShareAppMessage: function() {
+      return utils.shareAppMessage(this)
+  }
 });

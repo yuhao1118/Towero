@@ -123,12 +123,52 @@ var utils = {
     });
   },
 
+  // 当点击收藏按钮时
+  favorClick: function(that) {
+    var isFavor = that.data.isFavor;  // 当前收藏按钮状态
+    var teamKey = that.data.teamKey;
+
+    // 如果当前页面已被收藏，再次点击则删除
+    if (isFavor) {
+      app.deleteFavor('team', teamKey, () => {
+        that.setData({
+          isFavor: false
+        });
+      });
+    } 
+    // 否则收藏   
+    else {
+      app.addFavor('team', teamKey, () => {
+        that.setData({
+          isFavor: true
+        });
+      });
+    }
+  },
+
+  // 分享小程序函数
+  shareAppMessage: function(that){
+    var teamNumber = that.data.teamInfo.team_number;
+    var teamKey = that.data.teamKey;
+
+    return {
+        title: `Team ${teamNumber}`,
+        path: `/pages/team-tab/team-tab?link_type=team&team_key=${teamKey}`
+    }
+  },
+
   // 页面跳转携参函数
   linkParam: function(options, that) {
     var teamKey = options.team_key;
-
     that.setData({
-      teamKey: options.team_key
+      teamKey: teamKey
+    });
+    
+    // 获取数据库是否存在当前页面的teamKey，决定收藏按钮状态
+    app.getKey('team', teamKey, res => {
+      that.setData({
+        isFavor: res
+      });
     });
   }
 };

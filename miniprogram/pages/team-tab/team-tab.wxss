@@ -1,1 +1,6 @@
-/* pages/team-tab/team-tab.wxss */
+.search {
+    padding-left : 10px;
+    background-color: #fff;
+    width: 730rpx;
+    overflow: hidden;
+}

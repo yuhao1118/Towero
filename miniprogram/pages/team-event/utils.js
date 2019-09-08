@@ -280,6 +280,19 @@ var utils = {
     }
   },
 
+  // 分享小程序函数
+  shareAppMessage: function(that) {
+    var eventName = that.data.eventInfo.name;
+    var teamNumber = that.data.teamInfo.team_number;
+    var eventKey = that.data.eventKey;
+    var teamKey = that.data.teamKey
+
+    return {
+      title: `${teamNumber} @ ${eventName}`,
+      path: `/pages/team-tab/team-tab?link_type=team_event&team_key=${teamKey}&event_key=${eventKey}`
+    };
+  },
+
   // 页面跳转携参函数
   linkParam: function(options, that) {
     var fabIcon = '';

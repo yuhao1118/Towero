@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "Events",
   "usingComponents": {
     "van-search": "/miniprogram_npm/vant-weapp/search/index",
     "van-row": "/miniprogram_npm/vant-weapp/row/index",

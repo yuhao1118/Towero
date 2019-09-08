@@ -6,7 +6,7 @@
                 <van-col span="4">
                     <view class="rank-play-off-container">
                         <view class="rank-number">#{{rankInfo.rank}}</view>
-                        <view class="play-off">{{rankInfo.record.wins}}-{{rankInfo.record.ties}}-{{rankInfo.record.losses}}</view>
+                        <view class="play-off">{{rankInfo.record.wins}}-{{rankInfo.record.losses}}-{{rankInfo.record.ties}}</view>
                     </view>
                 </van-col>
                 <!-- 中间队伍信息和得分简介 -->

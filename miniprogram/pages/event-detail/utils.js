@@ -324,10 +324,54 @@ var utils = {
     });
   },
 
+  // 当点击收藏按钮时
+  favorClick: function(that) {
+    var isFavor = that.data.isFavor; // 当前收藏按钮状态
+    var eventKey = that.data.eventKey;
+
+    // 如果当前页面已被收藏，再次点击则删除
+    if (isFavor) {
+      app.deleteFavor('event', eventKey, () => {
+        that.setData({
+          isFavor: false
+        });
+      });
+    }
+    // 否则收藏
+    else {
+      app.addFavor('event', eventKey, () => {
+        that.setData({
+          isFavor: true
+        });
+      });
+    }
+  },
+
+  // 分享小程序函数
+  shareAppMessage: function(that) {
+    var eventName = that.data.eventInfo.name;
+    var eventYear = that.data.eventInfo.year;
+    var eventKey = that.data.eventKey;
+
+    return {
+      title: `${eventName} @ ${eventYear}`,
+      path: `/pages/team-tab/team-tab?link_type=event&event_key=${eventKey}`
+    };
+  },
+
   // 页面跳转携参函数
   linkParam: function(options, that) {
+    var eventKey = options.event_key;
+
     that.setData({
-      eventKey: options.event_key,
+      eventKey: eventKey
+    });
+
+    // 获取数据库是否存在当前页面的teamKey，决定收藏按钮状态
+    app.getKey('event', eventKey, res => {
+      that.setData({
+        isFavor: res
+      });
     });
   }
 };

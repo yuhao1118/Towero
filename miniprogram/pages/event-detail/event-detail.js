@@ -19,6 +19,7 @@ Page({
   data: {
     activeTabs: 0, // 当前激活的Tab的索引
     eventKey: String, // event_key -- e.g: 2019casf
+    isFavor: false, // 当前页是否被收藏
     eventInfo: Object, // 存放赛事信息
     teamInfoArray: Array, // 存放所有队伍信息的数组
     teamInfoObj: Object, // 存放所有队伍信息的对象，以team_key为属性
@@ -79,9 +80,15 @@ Page({
 
   // 点击team-card事件，自动返回teamKey
   onTeamCardClick: function(event) {
-    utils.teamCardClick(event, this);       // 跳转到team-event页
+    utils.teamCardClick(event, this); // 跳转到team-event页
   },
 
+  // 点击收藏按钮事件
+  onFavorClick: function() {
+    utils.favorClick(this);
+  },
   // 用户点击右上角分享
-  onShareAppMessage: function() {}
+  onShareAppMessage: function() {
+    return utils.shareAppMessage(this);
+  }
 });

@@ -40,3 +40,5 @@
         </van-tab>
     </van-tabs>
 </view>
+<!-- 悬浮收藏按钮 -->
+<fab-button wx:if="{{eventKey}}" bind:click="onFavorClick" icon="star" isClicked="{{isFavor}}"/>

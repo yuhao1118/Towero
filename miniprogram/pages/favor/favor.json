@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "Favorites",
+  "usingComponents": {
+    "team-card": "/components/team-card/team-card",
+    "event-card": "/components/event-card/event-card",
+    "title-bar": "/components/title-bar/title-bar"
+  }
+}

@@ -1,1 +1,42 @@
-/* pages/settting-tab/setting-tab.wxss */
+.index {
+  width: 750rpx;
+  padding: 15px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.logo {
+  height: 80px;
+  width: 80px;
+}
+
+.row {
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  display: flex;
+}
+
+.title {
+  font-size: 12pt;
+  color: #424242;
+}
+
+.version {
+  font-size: 10pt;
+  color: #424242;
+}
+
+.margin {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.list {
+  width: 750rpx;
+  overflow: hidden;
+  background-color: #fff;
+  margin-bottom: 15px;
+}

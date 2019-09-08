@@ -43,7 +43,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -69,6 +69,13 @@
 					"id": -1,
 					"name": "pages/team-event/team-event",
 					"pathName": "pages/team-event/team-event",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/settting-tab/setting-tab",
+					"pathName": "pages/settting-tab/setting-tab",
 					"scene": null
 				}
 			]

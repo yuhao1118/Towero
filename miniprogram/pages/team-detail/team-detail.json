@@ -4,6 +4,7 @@
     "event-card": "/components/event-card/event-card",
     "loading": "/components/loading/loading",
     "title-bar": "/components/title-bar/title-bar",
+    "fab-button": "/components/fab-button/fab-button",
     "van-tab": "/miniprogram_npm/vant-weapp/tab/index",
     "van-tabs": "/miniprogram_npm/vant-weapp/tabs/index"
   }
