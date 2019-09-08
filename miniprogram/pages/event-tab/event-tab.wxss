@@ -1,1 +1,11 @@
-/* pages/event-tab/event-tab.wxss */
+.filter{
+    display: flex;
+    height: 54px;
+    align-items: center;
+    justify-content: center;
+    padding-left: 16px;
+}
+
+.picker-color {
+    color: #3f51b5;
+}

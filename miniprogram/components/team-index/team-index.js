@@ -35,8 +35,8 @@ Component({
     },
 
     // 选择器改变事件
-    onPickerConfirm: function(e) {
-      var selectedYear = e.detail.value;
+    onPickerConfirm: function(event) {
+      var selectedYear = event.detail.value;
       this.setData({
         selectedYear: selectedYear,
         yearCellClick: false  // confirm后设置弹出层为关闭状态

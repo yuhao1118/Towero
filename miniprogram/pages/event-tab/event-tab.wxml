@@ -1,2 +1,23 @@
-<view>
+<view class="container">
+    <!-- 搜索框带filter按钮 -->
+    <view class="list">
+        <van-row>
+            <van-col span="2">
+                <view class="filter" bind:tap="onFilterClick">
+                    <van-icon name="filter-o" />
+                </view>
+            </van-col>
+            <van-col span="22">
+                <van-search shape="round" value="{{ searchValue }}" placeholder="Search Events in {{selectedYear}}" show-action bind:search="onSearch" bind:cancel="onSearchCanel" />
+            </van-col>
+        </van-row>
+    </view>
+    <event-card wx:if="{{isSearch && searchEventArray.length > 0}}" wx:for="{{searchEventArray}}" wx:key="{{index}}" id="{{index}}" eventInfo="{{searchEventArray[index]}}" bind:event="onEventCardClick" />
+    <event-card wx:if="{{!isSearch && defaultEventArray.length > 0}}" wx:for="{{defaultEventArray}}" wx:key="{{index}}" id="{{index}}" eventInfo="{{defaultEventArray[index]}}" bind:event="onEventCardClick" />
+    <loading hidden="{{isSearch && lastSearchFinish}}" />
+    <loading hidden="{{!isSeach && lastLoadFinish}}" />
+    <view style="{{isIphoneX ? 'margin-bottom: 84px;' : 'margin-bottom: 50px;'}}" />
+    <van-popup wx:if="{{showPopUp}}" show="{{showPopUp}}" position="bottom" bind:close="onPopUpClose">
+        <van-picker show-toolbar toolbar-class="picker-color" loading="{{eventYearsArray==null || eventYearsArray.length == 0}}" columns="{{ eventYearsArray }}" default-index="{{ pickerDefaultSelected }}" bind:cancel="onPopUpClose" bind:confirm="onPickerConfirm" />
+    </van-popup>
 </view>

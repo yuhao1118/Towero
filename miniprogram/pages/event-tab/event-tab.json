@@ -1,4 +1,12 @@
 {
   "usingComponents": {
+    "van-search": "/miniprogram_npm/vant-weapp/search/index",
+    "van-row": "/miniprogram_npm/vant-weapp/row/index",
+    "van-col": "/miniprogram_npm/vant-weapp/col/index",
+    "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
+    "van-popup": "/miniprogram_npm/vant-weapp/popup/index",
+    "van-picker": "/miniprogram_npm/vant-weapp/picker/index",
+    "event-card": "/components/event-card/event-card",
+    "loading": "/components/loading/loading"
   }
 }

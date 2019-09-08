@@ -4,6 +4,7 @@ import { utils } from '/utils.js';
 
 Page({
   data: {
+    isIphoneX: false, //为iPhone X做底部tabbar适配
     scrollIndex: 0, // 第几次触碰到页面底部计数，默认为0，不为空
     isSearch: false, // 是否处于搜索状态，决定要加载的数组，以及loading组件
     searchValue: String, // 搜索数据字符串
@@ -15,6 +16,7 @@ Page({
 
   // 生命周期函数--监听页面加载
   onLoad: function(options) {
+    utils.load(this);
     var index = this.data.scrollIndex;
     utils.getTeams(this, index);
   },

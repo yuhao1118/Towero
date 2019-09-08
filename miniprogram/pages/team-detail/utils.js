@@ -48,6 +48,12 @@ var utils = {
   teamYearEvent: function(that) {
     var teamKey = that.data.teamKey;
     var selectedYear = that.data.selectedYear;
+    var eventInfoWithTitleArray = [
+      //   {
+      //     title: '', // title-bar显示值
+      //     eventInfoArray: new Array() // 分类后的eventInfoArray
+      //   }
+    ]; // 有title-bar的数组
 
     app.httpsRequest(`/team/${teamKey}/events/${selectedYear}`, res => {
       for (var i in res) {
@@ -65,8 +71,36 @@ var utils = {
 
       res.sort(dateSort); //  按日期从小到大排序
 
+      for (var i in res) {
+        var curEventInfo = res[i]; // 当前循环的eventInfo对象
+        var { event_type_string } = curEventInfo; // event类型
+        var hasTitle = false; // 是否已经存在标题
+
+        for (var j in eventInfoWithTitleArray) {
+          var curEFWTObj = eventInfoWithTitleArray[j]; // 循环当前对象
+          var { title, eventInfoArray } = curEFWTObj;
+
+          //   找到已有标题
+          if (event_type_string == title) {
+            eventInfoArray.push(curEventInfo);
+            hasTitle = true;
+          }
+        }
+
+        //   循环结束且没有找到已有标题则新增一个EFWT对象
+        if (!hasTitle) {
+          var newEFWTObj = {
+            title: event_type_string,
+            eventInfoArray: new Array()
+          };
+
+          newEFWTObj.eventInfoArray.push(curEventInfo);
+          eventInfoWithTitleArray.push(newEFWTObj);
+        }
+      }
+
       that.setData({
-        eventInfoArray: res
+        eventInfoWithTitleArray: eventInfoWithTitleArray
       });
     });
   },

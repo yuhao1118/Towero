@@ -4,4 +4,5 @@
     <team-card wx:if="{{!isSearch && defaultTeamArray.length > 0}}" wx:for="{{defaultTeamArray}}" wx:key="{{index}}" id="{{index}}" teamInfo="{{defaultTeamArray[index]}}" bind:event="onTeamCardClick"/>
     <loading hidden="{{isSearch && lastSearchFinish}}" />
     <loading hidden="{{!isSeach && lastLoadFinish}}" />
+    <view style="{{isIphoneX ? 'margin-bottom: 84px;' : 'margin-bottom: 50px;'}}" />
 </view>

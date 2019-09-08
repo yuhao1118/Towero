@@ -1,11 +1,11 @@
 var app = getApp();
 
 var utils = {
-  // 获取50个队伍，追加式添加
+  // 获取20个队伍，追加式添加
   getTeams: function(that, index) {
     var db = wx.cloud.database();
     var defaultTeamArray = that.data.defaultTeamArray;
-    var gap = 50; // 单次请求为50只队伍
+    var gap = 20; // 单次请求为20只队伍
     var skip = index * gap; // 需要跳过的
 
     db.collection('teams')
@@ -40,10 +40,13 @@ var utils = {
     }
   },
 
+  // 搜索函数
   search: function(event, that) {
     var searchValue = event.detail; // 获取到的搜索字符串
     var db = wx.cloud.database();
     var _ = db.command; // 数据库高级功能command
+    var name = searchValue.match(/^[A-Za-z][A-Za-z\s]*[A-Za-z]$/gi);    // 模糊匹配队名正则表达式
+    var name_regexp = name ? name.toString() : searchValue  // 数据库查询正则表达式接收匹配后的字符串
 
     that.setData({
       lastSearchFinish: false, // 加载loading
@@ -55,10 +58,14 @@ var utils = {
       .where(
         _.or([
           {
-            team_number: _.eq(parseInt(searchValue)) // 匹配队号字段
+            team_number: _.eq(parseInt(searchValue)) // 精确匹配队号字段
           },
           {
-            nickname: _.eq(searchValue) // 或者匹配队伍名字段
+            nickname: db.RegExp({
+              // 或模糊匹配队名字段
+              regexp: name_regexp,
+              options: 'i'
+            })
           }
         ])
       )
@@ -72,6 +79,7 @@ var utils = {
       });
   },
 
+  // 取消搜索
   searchCancel: function(that) {
     that.setData({
       isSearch: false,
@@ -86,6 +94,13 @@ var utils = {
     wx.navigateTo({
       url: `/pages/team-detail/team-detail?team_key=${teamKey}`
     });
+  },
+
+  //   启动初始化函数
+  load: function(that){
+      that.setData({
+          isIphoneX : app.data.isIphoneX
+      })
   }
 };
 

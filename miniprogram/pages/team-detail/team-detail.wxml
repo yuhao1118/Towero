@@ -10,8 +10,10 @@
         </van-tab>
         <!-- Event 选项卡 -->
         <van-tab title="Event">
-            <loading hidden="{{eventInfoArray}}" />
-            <event-card wx:for="{{eventInfoArray}}" wx:key="{{index}}" id="{{index}}" eventInfo="{{eventInfoArray[index]}}" bind:event="onEventCardClick" />
+            <loading hidden="{{eventInfoWithTitleArray}}" />
+            <title-bar wx:for="{{eventInfoWithTitleArray}}" title="{{item.title}}">
+                <event-card wx:for="{{item.eventInfoArray}}" wx:for-item="eventInfo" id="{{index}}" eventInfo="{{eventInfo}}" bind:event="onEventCardClick" />
+            </title-bar>
         </van-tab>
     </van-tabs>
 </view>

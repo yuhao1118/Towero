@@ -9,4 +9,8 @@
     </view>
     <button bind:tap="onEventDetail">Jump to event-detail</button>
     <button bind:tap="onTeamEvent">Jump to team-event</button>
+
+    <van-popup show="{{showPopUp}}" position="bottom" bind:close="onPopUpClose">
+        <van-picker show-toolbar loading="{{eventYearsArray==null || eventYearsArray.length == 0}}" columns="{{ eventYearsArray }}" default-index="{{ 0 }}" bind:cancel="onPopUpClose" bind:confirm="onPickerConfirm" />
+    </van-popup>
 </view>

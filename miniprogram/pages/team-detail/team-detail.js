@@ -17,7 +17,7 @@ Page({
     teamInfo: Object, // 从缓存中索引到的队伍信息
     eventYears: Array, // eventKeys处理去重得到的队伍参赛年份数组
     selectedYear: Number, // 当前选中的参赛年份（指定一年）
-    eventInfoArray: Array // 从缓存中索引到的赛事信息数组
+    eventInfoWithTitleArray: Array // 从缓存中索引到的赛事信息数组，title-bar分类
   },
 
   // 生命周期函数--监听页面加载

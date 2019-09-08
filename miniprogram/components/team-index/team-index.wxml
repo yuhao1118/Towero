@@ -9,6 +9,6 @@
     </van-cell-group>
     <!-- 参赛年份选择弹出层 -->
     <van-popup show="{{ yearCellClick }}" position="bottom" bind:close="onPopUpClose">
-        <van-picker toolbar-class="picker-color" show-toolbar loading="{{eventYears==null || eventYears.length == 0}}" columns="{{ eventYears }}" default-index="{{ 0 }}" bind:cancel="onPopUpClose" bind:confirm="onPickerConfirm" />
+        <van-picker round toolbar-class="picker-color" show-toolbar loading="{{eventYears==null || eventYears.length == 0}}" columns="{{ eventYears }}" default-index="{{ 0 }}" bind:cancel="onPopUpClose" bind:confirm="onPickerConfirm" />
     </van-popup>
 </view>
