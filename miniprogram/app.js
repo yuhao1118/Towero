@@ -298,14 +298,14 @@ App({
                 //   添加收藏对象
                 db.collection('favor').add({
                   data: {
-                    _id: res.result.openid,
+                    _id: openid,
                     teams: [],
                     events: []
                   },
                   success: res => {
                     // 添加成功
                     console.log('add success');
-                  }
+                  },
                 });
               }
             }
