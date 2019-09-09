@@ -1,0 +1,22 @@
+@import '/app.wxss';
+
+.avatar-block{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.user-avatar{
+    height: 60px;
+    width: 60px;
+    overflow: hidden;
+    border-radius: 30px;
+}
+
+.user-name{
+    color: #424242;
+    font-size: 12pt;
+    margin-top: 10px;
+    text-align: center;
+}

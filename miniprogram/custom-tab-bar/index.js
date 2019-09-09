@@ -15,7 +15,7 @@ Component({
       {
         icon: 'star-o',
         text: 'Favorites',
-        pagePath: '/pages/favor/favor'
+        pagePath: '/pages/favor-tab/favor-tab'
       },
       {
         icon: 'setting-o',

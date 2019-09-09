@@ -6,15 +6,24 @@
 
 import { utils } from '/utils.js';
 
+var app = getApp();
+
 Page({
   data: {
+    isIphoneX: false, //为iPhone X做底部tabbar适配
     teamInfoArray: new Array(), // 存放teamInfo卡片的数组
     eventInfoArray: new Array() // 存放eventInfo卡片的数组
   },
 
+  onLoad: function() {
+    this.setData({
+      isIphoneX: app.data.isIphoneX
+    });
+  },
+
   onShow: function() {
     this.getTabBar().init(); // 更新tabbar选中态
-    utils.getFavorArray(this);  // 刷新页面数据
+    utils.getFavorArray(this); // 刷新页面数据
   },
 
   // 点击team-card触发事件

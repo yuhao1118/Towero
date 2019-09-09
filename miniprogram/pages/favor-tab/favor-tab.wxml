@@ -1,5 +1,6 @@
 <view class="container">
-    <view class="list tab-margin-top">
+    <avatar-card />
+    <view class="list">
         <title-bar wx:if="{{teamInfoArray.length > 0}}" title="Teams">
             <team-card wx:for="{{teamInfoArray}}" wx:key="{{index}}" id="{{index}}" teamInfo="{{teamInfoArray[index]}}" bind:event="onTeamCardClick" />
         </title-bar>
@@ -7,4 +8,5 @@
             <event-card wx:for="{{eventInfoArray}}" wx:key="{{index}}" id="{{index}}" eventInfo="{{eventInfoArray[index]}}" bind:event="onEventCardClick" />
         </title-bar>
     </view>
+    <view style="{{isIphoneX ? 'margin-bottom: 84px;' : 'margin-bottom: 50px;'}}" />
 </view>

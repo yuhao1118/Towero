@@ -3,6 +3,7 @@
   "usingComponents": {
     "team-card": "/components/team-card/team-card",
     "event-card": "/components/event-card/event-card",
+    "avatar-card": "/components/avatar-card/avatar-card",
     "title-bar": "/components/title-bar/title-bar"
   }
 }

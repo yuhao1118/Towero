@@ -1,0 +1,12 @@
+<view class="list  tab-margin">
+    <van-cell use-label-slot clickable size="large">
+        <view slot="title">
+            <view class="avatar-block">
+                <view class="user-avatar">
+                    <open-data class="user-avatar" type="userAvatarUrl"></open-data>
+                </view>
+                <open-data class="user-name" type="userNickName"></open-data>
+            </view>
+        </view>
+    </van-cell>
+</view>
