@@ -20,6 +20,7 @@ var utils = {
   // 循环event_key数组，请求event_info
   eventKey2Info: function(eventKeyArray, that) {
     var eventInfoArray = []; // 每次都必须完全刷新
+    var requestCount = 0; // 请求是异步返回数据的，通过计数判断是否所有请求都完成
 
     for (var i in eventKeyArray) {
       var curEventkey = eventKeyArray[i]; // 当前循环的event_key
@@ -37,13 +38,16 @@ var utils = {
         // 添加到info数组
         eventInfoArray.push(res);
 
-        // 每次请求都刷新一次数据
-        that.setData({
-          eventInfoArray: eventInfoArray
-        });
+        requestCount += 1;
+
+        if (requestCount == eventKeyArray.length) {
+          // 在key数组为空时，直接会刷新空info数组
+          that.setData({
+            eventInfoArray: eventInfoArray
+          });
+        }
       });
     }
-
     // 在key数组为空时，直接会刷新空info数组
     that.setData({
       eventInfoArray: eventInfoArray
@@ -53,6 +57,7 @@ var utils = {
   // 循环team_key数组，请求team_info
   teamKey2Info: function(teamKeyArray, that) {
     var teamInfoArray = []; // 每次都必须完全刷新
+    var requestCount = 0; // 请求是异步返回数据的，通过计数判断是否所有请求都完成
 
     for (var i in teamKeyArray) {
       var curTeamkey = teamKeyArray[i]; // 当前循环的event_key
@@ -61,10 +66,14 @@ var utils = {
         // 添加到info数组
         teamInfoArray.push(res);
 
-        // 每次请求都刷新一次数据
-        that.setData({
-          teamInfoArray: teamInfoArray
-        });
+        requestCount += 1;
+
+        if (requestCount == teamKeyArray.length) {
+          // 在key数组为空时，直接会刷新空info数组
+          that.setData({
+            teamInfoArray: teamInfoArray
+          });
+        }
       });
     }
 

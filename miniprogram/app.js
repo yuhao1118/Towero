@@ -14,8 +14,12 @@ App({
   // api        -- 请求api链接
   // onSuccess   -- 请求成功（来自缓存/网络）回调函数
   httpsRequest: function(api, onSuccess) {
-    var url = `https://www.thebluealliance.com/api/v3${api}?X-TBA-Auth-Key=kbxvOnS2csBH6fzQ8zijLw2f1k135fWp8NgTEfPRg1n8hYqh7SSUo9VJ3JEBlnIg`;
+    var url = `https://www.thebluealliance.com/api/v3${api}`;
     var lastModified = '';
+    var tbaAuthKey =
+      'kbxvOnS2csBH6fzQ8zijLw2f1k135fWp8NgTEfPRg1n8hYqh7SSUo9VJ3JEBlnIg';
+    var isExpire = true; // 缓存是否失效，如果失效则发生http请求（如果304，失效的缓存也可以用，只不过要更新时间）
+    var curRequestCache = {}; // 当前的缓存
 
     // 一开始立即返回本地缓存 (可能是旧的数据，可以先让客户端渲染)
     wx.getStorage({
@@ -23,37 +27,63 @@ App({
 
       //   成功获取到缓存，同时获取到缓存记录的lastModified
       success: res => {
+        curRequestCache = res.data; // 给304用
         lastModified = res.data.lastModified;
+
+        var lastedLime = (new Date() - new Date(res.data.storageTime)) / 1000
+        isExpire = lastedLime > 3600; // 设置6分钟失效
+
+        console.log('getStorage isExpire', isExpire);
         onSuccess(res.data.httpData);
       },
 
       //   无论是否成功获取到缓存，都请求。如果获取缓存失败则lastModified为空字符串
       complete: function() {
-        wx.request({
-          url: url,
-          header: {
-            'content-type': 'application/json', // 文本类型为Json
-            'If-Modified-Since': lastModified //最后一次修改头的时间
-          },
+        // 如果失效，则真实请求
+        if (isExpire) {
+          console.log('isExpired, requesting...');
 
-          //   请求成功的回调函数
-          success: res => {
-            var requestCache = {
-              httpData: res.data, // http请求结果的数据(data)部分
-              lastModified: res.header['Last-Modified'] // http请求最后一次修改时间的头
-            };
+          wx.request({
+            url: url,
+            header: {
+              'content-type': 'application/json', // 文本类型为Json
+              'X-TBA-Auth-Key': tbaAuthKey, // tba请求认证key
+              'If-Modified-Since': lastModified //最后一次修改头的时间
+            },
 
-            //   如果请求200，保存数据到本地（这里肯定是新的数据，刷新操作），同时回调
-            if (res.statusCode == 200) {
-              wx.setStorage({
-                key: api,
-                data: requestCache
-              });
+            //   请求成功的回调函数
+            success: res => {
+              //   如果请求200，保存数据到本地（这里肯定是新的数据，刷新操作），同时回调
+              if (res.statusCode == 200) {
+                console.log('200, real expired, setting new cache...');
 
-              onSuccess(requestCache.httpData);
+                // 全新的缓存
+                var requestCache = {
+                  httpData: res.data, // http请求结果的数据(data)部分
+                  storageTime: new Date(), //存储缓存的时间，用于记录缓存过期
+                  lastModified: res.header['Last-Modified'] // http请求最后一次修改时间的头
+                };
+
+                wx.setStorage({
+                  key: api,
+                  data: requestCache
+                });
+
+                onSuccess(requestCache.httpData);
+              }
+              // 说明缓存并没有失效，只更新时间，无需回调（一开始已经回调过了）
+              else if (res.statusCode == 304) {
+                console.log('304, not expired, updating time...');
+
+                curRequestCache.storageTime = new Date();
+                wx.setStorage({
+                  key: api,
+                  data: curRequestCache
+                });
+              }
             }
-          }
-        });
+          });
+        }
       }
     });
   },
@@ -305,7 +335,7 @@ App({
                   success: res => {
                     // 添加成功
                     console.log('add success');
-                  },
+                  }
                 });
               }
             }
