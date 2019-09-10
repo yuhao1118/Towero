@@ -1,6 +1,8 @@
 .search {
-    padding-left : 10px;
+    width: 740rpx;
+}
+
+.search-container {
+    padding-left: 10rpx;
     background-color: #fff;
-    width: 730rpx;
-    overflow: hidden;
 }

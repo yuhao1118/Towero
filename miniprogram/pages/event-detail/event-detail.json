@@ -8,6 +8,7 @@
     "award-card": "/components/award-card/award-card",
     "title-bar": "/components/title-bar/title-bar",
     "opr-card": "/components/opr-card/opr-card",
+    "empty-page": "/components/empty-page/empty-page",
     "fab-button": "/components/fab-button/fab-button",
     "van-tab": "/miniprogram_npm/vant-weapp/tab/index",
     "van-tabs": "/miniprogram_npm/vant-weapp/tabs/index",

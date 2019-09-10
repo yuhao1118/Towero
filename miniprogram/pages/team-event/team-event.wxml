@@ -7,21 +7,25 @@
         <van-tab title="Summary">
             <loading hidden="{{summaryInfo}}" />
             <summary-card summaryInfo="{{summaryInfo}}" awardsArray="{{awardsArray}}" />
+            <empty-page />        
         </van-tab>
         <!-- Matches 选项卡 -->
         <van-tab title="Matches">
             <loading hidden="{{matchInfo}}" />
             <match-index matchInfo="{{matchInfo}}" curTeam="{{teamInfo.team_number}}" bind:event="onTeamCardClick" />
+            <empty-page />                
         </van-tab>
         <!-- Stats 选项卡 -->
         <van-tab title="Stats">
             <loading hidden="{{oprObj}}" />
             <stat-card oprObj="{{oprObj}}" />
+            <empty-page />                
         </van-tab>
         <!-- Awards 选项卡 -->
         <van-tab title="Awards">
             <loading hidden="{{awardsArray}}" />
             <award-card wx:for="{{awardsArray}}" wx:key="{{index}}" id="{{index}}" bind:event="onTeamCardClick" awardInfo="{{awardsArray[index]}}" />
+            <empty-page />                
         </van-tab>
     </van-tabs>
 </view>

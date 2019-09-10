@@ -3,15 +3,14 @@
         <image class="logo" src="/images/icon.png" />
         <view class="row">
             <text class="title margin" decode="{{true}}">Towero &nbsp;</text>
-            <text class="version">(v0.5.5)</text>
+            <text class="version">(v0.6.0)</text>
         </view>
         <text class="version margin">©2019 易世科技服务中心</text>
     </view>
     <view class="list">
         <van-cell-group>
             <van-cell clickable title="Powered by" value="©2014 The Blue Alliance" />
-            <van-cell clickable title="License" value="MIT" />
-            <van-cell clickable title="Github link" label="{{githubLink}}" id="1" bind:click="onCopyClick" />
+            <van-cell clickable title="Open source" label="{{githubLink}}" id="1" bind:click="onCopyClick" />
             <van-cell clickable title="Contact us" label="Wechat public account: {{wechatAccount}}" id="2" bind:click="onCopyClick" />
             <van-cell clickable title="Bug report" label="Developer: {{developerEmail}}" id="3" bind:click="onCopyClick" />
             <van-cell clickable title="Thanks to" label="Logo design: Simon" />

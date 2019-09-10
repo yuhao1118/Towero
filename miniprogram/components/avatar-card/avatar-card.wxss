@@ -1,22 +1,28 @@
 @import '/app.wxss';
 
-.avatar-block{
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-}
-
-.user-avatar{
-    height: 60px;
-    width: 60px;
+.avatar-container {
+    width: 720rpx;
     overflow: hidden;
-    border-radius: 30px;
+    padding: 20px 15rpx;
+  }
+
+.avatar-block {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
-.user-name{
-    color: #424242;
-    font-size: 12pt;
-    margin-top: 10px;
-    text-align: center;
+.user-avatar {
+  height: 50px;
+  width: 50px;
+  margin-left: 5px;
+  overflow: hidden;
+  border-radius: 25px;
+}
+
+.user-name {
+  margin-left: 10px;
+  font-size: 12pt;
+  line-height: 50px;
 }

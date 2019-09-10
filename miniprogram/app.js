@@ -81,6 +81,10 @@ App({
                   data: curRequestCache
                 });
               }
+              // 其他任何错误，返回空对象
+              else {
+                onSuccess({});
+              }
             }
           });
         }

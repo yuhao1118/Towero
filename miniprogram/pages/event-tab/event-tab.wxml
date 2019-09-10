@@ -17,6 +17,6 @@
     <loading hidden="{{isSearch && lastSearchFinish}}" />
     <view style="{{isIphoneX ? 'margin-bottom: 84px;' : 'margin-bottom: 50px;'}}" />
 </view>
-<van-popup wx:if="{{showPopUp}}" show="{{showPopUp}}" position="bottom" bind:close="onPopUpClose">
+<van-popup wx:if="{{showPopUp}}" show="{{showPopUp}}" round position="bottom" bind:close="onPopUpClose">
     <van-picker show-toolbar toolbar-class="picker-color" loading="{{eventYearsArray==null || eventYearsArray.length == 0}}" columns="{{ eventYearsArray }}" default-index="{{ pickerDefaultSelected }}" bind:cancel="onPopUpClose" bind:confirm="onPickerConfirm" />
 </van-popup>

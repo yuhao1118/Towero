@@ -7,36 +7,43 @@
         <van-tab title="Info">
             <loading hidden="{{eventInfo}}" />
             <event-index eventInfo="{{eventInfo}}" />
+            <empty-page />
         </van-tab>
         <!-- 参赛队伍选项卡 -->
         <van-tab title="Teams">
             <loading hidden="{{teamInfoArray}}" />
             <team-card wx:for="{{teamInfoArray}}" wx:key="{{index}}" id="{{index}}" bind:event="onTeamCardClick" teamInfo="{{teamInfoArray[index]}}" />
+            <empty-page />        
         </van-tab>
         <!-- 队伍排名选项卡 -->
         <van-tab title="Rankings">
             <loading hidden="{{rankArray}}" />
             <rank-card wx:for="{{rankArray}}" wx:key="{{index}}" id="{{index}}" bind:event="onTeamCardClick" rankInfo="{{rankArray[index]}}" />
+            <empty-page />        
         </van-tab>
         <!-- 比赛场次选项卡 -->
         <van-tab title="Matches">
             <loading hidden="{{matchInfo}}" />
             <match-index bind:event="onTeamCardClick" matchInfo="{{matchInfo}}" />
+            <empty-page />        
         </van-tab>
         <!-- 联盟选项卡 -->
         <van-tab title="Alliances">
             <loading hidden="{{alliancesArray}}" />
             <alliance-card wx:for="{{alliancesArray}}" wx:key="{{index}}" id="{{index}}" bind:event="onTeamCardClick" allianceInfo="{{alliancesArray[index]}}" />
+            <empty-page />        
         </van-tab>
         <!-- Stats选项卡 -->
         <van-tab title="Stats">
             <loading hidden="{{oprArray}}" />
             <opr-card wx:for="{{oprArray}}" wx:key="{{index}}" id="{{index}}" bind:event="onTeamCardClick" oprInfo="{{oprArray[index]}}" />
+            <empty-page />        
         </van-tab>
         <!-- 奖项选项卡 -->
         <van-tab title="Awards">
             <loading hidden="{{awardsArray}}" />
             <award-card wx:for="{{awardsArray}}" wx:key="{{index}}" id="{{index}}" bind:event="onTeamCardClick" awardInfo="{{awardsArray[index]}}"/>
+            <empty-page />        
         </van-tab>
     </van-tabs>
 </view>

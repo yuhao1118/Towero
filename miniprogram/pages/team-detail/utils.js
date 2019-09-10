@@ -14,7 +14,7 @@ var utils = {
 
     app.httpsRequest(`/team/${teamKey}`, res => {
       that.setData({
-        teamInfo: res
+        teamInfo: res ? res : {}
       });
 
       // 设置页面标题
@@ -100,7 +100,7 @@ var utils = {
       }
 
       that.setData({
-        eventInfoWithTitleArray: eventInfoWithTitleArray
+        eventInfoWithTitleArray: eventInfoWithTitleArray ? eventInfoWithTitleArray : []
       });
     });
   },

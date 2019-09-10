@@ -7,6 +7,7 @@
         <van-tab title="Team">
             <loading hidden="{{teamInfo}}" />
             <team-index teamInfo="{{teamInfo}}" eventYears="{{eventYears}}" selectedYear="{{selectedYear}}" bind:event="onSelectYear"></team-index>
+            <empty-page />                
         </van-tab>
         <!-- Event 选项卡 -->
         <van-tab title="Event">
@@ -14,6 +15,7 @@
             <title-bar wx:for="{{eventInfoWithTitleArray}}" title="{{item.title}}">
                 <event-card wx:for="{{item.eventInfoArray}}" wx:for-item="eventInfo" id="{{index}}" eventInfo="{{eventInfo}}" bind:event="onEventCardClick" />
             </title-bar>
+            <empty-page />                
         </van-tab>
     </van-tabs>
 </view>

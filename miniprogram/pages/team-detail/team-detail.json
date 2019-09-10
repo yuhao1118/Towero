@@ -5,6 +5,7 @@
     "loading": "/components/loading/loading",
     "title-bar": "/components/title-bar/title-bar",
     "fab-button": "/components/fab-button/fab-button",
+    "empty-page": "/components/empty-page/empty-page",
     "van-tab": "/miniprogram_npm/vant-weapp/tab/index",
     "van-tabs": "/miniprogram_npm/vant-weapp/tabs/index"
   }

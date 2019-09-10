@@ -20,8 +20,8 @@ var utils = {
     app.httpsRequest(`/event/${eventKey}/simple`, eventRes => {
       app.httpsRequest(`/team/${teamKey}/simple`, teamRes => {
         that.setData({
-          eventInfo: eventRes,
-          teamInfo: teamRes
+          eventInfo: eventRes ? eventRes : {},
+          teamInfo: teamRes ? teamRes : {}
         });
 
         // 设置页面标题
@@ -151,7 +151,7 @@ var utils = {
       matchInfo.f.sort(matchSort);
 
       that.setData({
-        matchInfo: matchInfo
+        matchInfo: matchInfo ? matchInfo : {}
       });
     });
   },
@@ -185,7 +185,7 @@ var utils = {
       }
 
       that.setData({
-        oprObj: oprObj
+        oprObj: oprObj ? oprObj : {}
       });
     });
   },
@@ -218,7 +218,7 @@ var utils = {
       }
 
       that.setData({
-        awardsArray: res
+        awardsArray: res ? res : []
       });
     });
   },

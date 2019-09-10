@@ -33,7 +33,7 @@ var utils = {
       }
 
       that.setData({
-        eventInfo: res
+        eventInfo: res ? res : {}
       });
 
       // 设置页面标题
@@ -50,7 +50,7 @@ var utils = {
     app.httpsRequest(`/event/${eventKey}/teams/simple`, res => {
       res.sort(teamSort);
       that.setData({
-        teamInfoArray: res
+        teamInfoArray: res ? res : {}
       });
     });
   },
@@ -98,7 +98,7 @@ var utils = {
       }
 
       that.setData({
-        rankArray: res.rankings
+        rankArray: res.rankings ? res.rankings : []
       });
     });
   },
@@ -112,34 +112,39 @@ var utils = {
       var oprObj = res; // 未经处理的所有opr数据
       var teamInfoObj = that.data.teamInfoObj; // 以team_key为属性的对象
 
-      Object.keys(res.oprs).forEach(key => {
-        var teamKey = key;
-        var teamNumber = teamKey.replace('frc', '');
-        var oprs = app
-          .jsonSafeProp('oprObj.oprs.' + teamKey, oprObj)
-          .toFixed(2);
-        var dprs = app
-          .jsonSafeProp('oprObj.dprs.' + teamKey, oprObj)
-          .toFixed(2);
-        var ccwms = app
-          .jsonSafeProp('oprObj.ccwms.' + teamKey, oprObj)
-          .toFixed(2);
-        var teamInfo = app.jsonSafeProp('teamInfoObj.' + teamKey, teamInfoObj);
+      try {
+        Object.keys(res.oprs).forEach(key => {
+          var teamKey = key;
+          var teamNumber = teamKey.replace('frc', '');
+          var oprs = app
+            .jsonSafeProp('oprObj.oprs.' + teamKey, oprObj)
+            .toFixed(2);
+          var dprs = app
+            .jsonSafeProp('oprObj.dprs.' + teamKey, oprObj)
+            .toFixed(2);
+          var ccwms = app
+            .jsonSafeProp('oprObj.ccwms.' + teamKey, oprObj)
+            .toFixed(2);
+          var teamInfo = app.jsonSafeProp(
+            'teamInfoObj.' + teamKey,
+            teamInfoObj
+          );
 
-        oprArray.push({
-          oprs: oprs,
-          dprs: dprs,
-          ccwms: ccwms,
-          key: teamKey,
-          team_number: teamNumber,
-          team_info: teamInfo
+          oprArray.push({
+            oprs: oprs,
+            dprs: dprs,
+            ccwms: ccwms,
+            key: teamKey,
+            team_number: teamNumber,
+            team_info: teamInfo
+          });
         });
-      });
 
-      oprArray.sort(oprSort);
+        oprArray.sort(oprSort);
+      } catch (e) {}
 
       that.setData({
-        oprArray: oprArray
+        oprArray: oprArray ? oprArray : []
       });
     });
   },
@@ -182,7 +187,7 @@ var utils = {
       }
 
       that.setData({
-        alliancesArray: res
+        alliancesArray: res ? res : []
       });
     });
   },
@@ -253,7 +258,7 @@ var utils = {
       matchInfo.f.sort(matchSort);
 
       that.setData({
-        matchInfo: matchInfo
+        matchInfo: matchInfo ? matchInfo : {}
       });
     });
   },
@@ -285,7 +290,7 @@ var utils = {
       }
 
       that.setData({
-        awardsArray: res
+        awardsArray: res ? res : []
       });
     });
   },
