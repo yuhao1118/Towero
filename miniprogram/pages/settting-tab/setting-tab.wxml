@@ -3,7 +3,7 @@
         <image class="logo" src="/images/icon.png" />
         <view class="row">
             <text class="title margin" decode="{{true}}">Towero &nbsp;</text>
-            <text class="version">(v0.6.0)</text>
+            <text class="version">(v0.6.2)</text>
         </view>
         <text class="version margin">©2019 易世科技服务中心</text>
     </view>

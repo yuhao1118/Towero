@@ -6,18 +6,18 @@
         <!-- Team 选项卡 -->
         <van-tab title="Team">
             <loading hidden="{{teamInfo}}" />
+            <empty-page />
             <team-index teamInfo="{{teamInfo}}" eventYears="{{eventYears}}" selectedYear="{{selectedYear}}" bind:event="onSelectYear"></team-index>
-            <empty-page />                
         </van-tab>
         <!-- Event 选项卡 -->
         <van-tab title="Event">
             <loading hidden="{{eventInfoWithTitleArray}}" />
+            <empty-page />
             <title-bar wx:for="{{eventInfoWithTitleArray}}" title="{{item.title}}">
                 <event-card wx:for="{{item.eventInfoArray}}" wx:for-item="eventInfo" id="{{index}}" eventInfo="{{eventInfo}}" bind:event="onEventCardClick" />
             </title-bar>
-            <empty-page />                
         </van-tab>
     </van-tabs>
 </view>
 <!-- 悬浮收藏按钮 -->
-<fab-button wx:if="{{teamKey}}" bind:click="onFavorClick" icon="star" isClicked="{{isFavor}}"/>
+<fab-button wx:if="{{teamKey}}" bind:click="onFavorClick" icon="star" isClicked="{{isFavor}}" />
