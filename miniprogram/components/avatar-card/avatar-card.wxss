@@ -1,9 +1,9 @@
 @import '/app.wxss';
 
 .avatar-container {
-    width: 720rpx;
+    width: 670rpx;
     overflow: hidden;
-    padding: 20px 15rpx;
+    padding: 20px 0px;
   }
 
 .avatar-block {
@@ -22,7 +22,9 @@
 }
 
 .user-name {
-  margin-left: 10px;
-  font-size: 12pt;
+  margin-left: 15px;
+  font-size: 11pt;
   line-height: 50px;
+  font-weight: 550;
+  color: #424242;
 }

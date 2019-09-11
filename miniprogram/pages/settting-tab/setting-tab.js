@@ -5,7 +5,7 @@ var app = getApp();
 Page({
   data: {
     isIphoneX: false, //为iPhone X做底部tabbar适配
-    githubLink: 'https://github.com/eddy20001118/FRCMiniProgram',
+    githubLink: 'https://github.com/eddy20001118/Towero',
     wechatAccount: 'Embed Chamber',
     developerEmail: 'yuhao_li@hotmail.com',
     cacheSize: Number // 当前缓存容量

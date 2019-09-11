@@ -48,29 +48,31 @@ Page({
   onTabChange: function(event) {
     var activeTabs = event.detail.index;
 
-    // Teams Tab页
-    if (activeTabs == 1) {
-      utils.teamInfo(this);
-    }
-    // Rankings Tab页
-    else if (activeTabs == 2) {
-      utils.rankInfo(this);
-    }
-    // Matches Tab页
-    else if (activeTabs == 3) {
-      utils.matchesInfo(this);
-    }
-    // Alliances Tab页
-    else if (activeTabs == 4) {
-      utils.allianceInfo(this);
-    }
-    // Stats Tab页
-    else if (activeTabs == 5) {
-      utils.oprInfo(this);
-    }
-    // Awards Tab页
-    else if (activeTabs == 6) {
-      utils.awardInfo(this);
+    switch (activeTabs) {
+      case 1:
+        // Teams Tab页
+        utils.teamInfo(this);
+        break;
+      case 2:
+        // Rankings Tab页
+        utils.rankInfo(this);
+        break;
+      case 3:
+        // Matches Tab页
+        utils.matchesInfo(this);
+        break;
+      case 4:
+        // Alliances Tab页
+        utils.allianceInfo(this);
+        break;
+      case 5:
+        // Stats Tab页
+        utils.oprInfo(this);
+        break;
+      case 6:
+        // Awards Tab页
+        utils.awardInfo(this);
+        break;
     }
 
     this.setData({
