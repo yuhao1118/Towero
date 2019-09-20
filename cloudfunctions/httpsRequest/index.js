@@ -27,10 +27,13 @@ exports.main = async (event, context) => {
     console.log('requestOptions', requestOptions);
     request(requestOptions, (error, response, data) => {
       var res = {
-        data: JSON.parse(data),
         header: response.headers,
         statusCode: response.statusCode
       };
+
+      if (data) {
+          res.data = JSON.parse(data);
+      }
 
       console.log('res', res);
 

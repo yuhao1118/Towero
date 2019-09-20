@@ -1,11 +1,10 @@
 <view class="container">
     <view class="index">
         <image class="logo" src="/images/icon.png" />
-        <view class="row">
-            <text class="title margin" decode="{{true}}">Towero &nbsp;</text>
-            <text class="version">(v0.6.7)</text>
+        <view class="col">
+            <text class="title margin">Towero <text class="version">v0.7.2</text></text>
+            <text class="version margin">A FRC game information app </text>
         </view>
-        <text class="version margin">©2019 易世科技服务中心</text>
     </view>
     <view class="list">
         <van-cell-group>
@@ -21,5 +20,6 @@
             <van-cell clickable title="Delete network cache" bind:click="onFreeCacheClick" value="{{cacheSize}} KB" />
         </van-cell-group>
     </view>
+        <text class="version margin">©2019 易世科技服务中心</text>
     <view style="{{isIphoneX ? 'margin-bottom: 84px;' : 'margin-bottom: 50px;'}}" />    
 </view>

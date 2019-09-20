@@ -83,6 +83,12 @@ function brFilter(str) {
   }
 }
 
+// 月份位数补零
+function monthFormat(num) {
+  var length = 2;
+  return '-'+(Array(length).join('0') + num).slice(-length);
+}
+
 module.exports = {
   getEventYears: getEventYears,
   yearSort: yearSort,
@@ -91,5 +97,6 @@ module.exports = {
   teamSort: teamSort,
   oprSort: oprSort,
   matchSort: matchSort,
-  brFilter: brFilter
+  brFilter: brFilter,
+  monthFormat: monthFormat
 };

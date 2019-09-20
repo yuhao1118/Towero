@@ -10,12 +10,37 @@ Page({
     searchValue: String, // 搜索数据字符串
     lastSearchFinish: false, // 上一次搜索是否完成
     lastLoadFinish: false, // 上一次懒加载是否完成（若未完成，在这期间的触底不加入计数）
+    hasNextEvent: true, // 是否还有赛事信息可加载，决定是否显示loading
     defaultEventArray: new Array(), // 默认显示的eventInfo数组，一次50个，懒加载，必须初始化
     searchEventArray: Array, // 搜索结果返回的eventInfo数组，无需初始化，因为每次都会给赋值一个数组
     showPopUp: false, // 是否显示弹出层
     selectedYear: Number, // picker当前选中的年份
-    eventYearsArray: Array, // 存放从1992年到max_season的赛事年份数组，倒叙
-    pickerDefaultSelected: 0 // picker默认选择索引
+    selectedMonth: Number, // picker当前选中的月份
+    pickerColumn: [ // picker多列选择对象
+        {
+            values: Array, // 存放从1992年到max_season的赛事年份数组，倒叙
+            className: 'YearColumn',
+            defaultIndex: 0,
+          },
+          {
+            values: [ // 存放每年的全部月份
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'June',
+                'July',
+                'Aug',
+                'Sept',
+                'Oct',
+                'Nov',
+                'Dec'
+              ],
+            className: 'MonthColumn',
+            defaultIndex: 0
+          }
+    ],
   },
 
   // 生命周期函数--监听页面加载

@@ -11,10 +11,10 @@
   width: 80px;
 }
 
-.row {
+.col {
   justify-content: center;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   display: flex;
 }
 

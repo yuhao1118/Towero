@@ -23,8 +23,6 @@
 
 .user-name {
   margin-left: 15px;
-  font-size: 11pt;
+  font-size: 12pt;
   line-height: 50px;
-  font-weight: 550;
-  color: #424242;
 }

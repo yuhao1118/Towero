@@ -14,9 +14,9 @@
     </view>
     <event-card wx:if="{{isSearch && searchEventArray.length > 0}}" wx:for="{{searchEventArray}}" wx:key="{{index}}" id="{{index}}" eventInfo="{{searchEventArray[index]}}" bind:event="onEventCardClick" />
     <event-card wx:if="{{!isSearch && defaultEventArray.length > 0}}" wx:for="{{defaultEventArray}}" wx:key="{{index}}" id="{{index}}" eventInfo="{{defaultEventArray[index]}}" bind:event="onEventCardClick" />
-    <loading hidden="{{isSearch && lastSearchFinish}}" />
+    <loading wx:if="{{(isSearch && !lastSearchFinish) || (!isSearch && hasNextEvent)}}" />
     <view style="{{isIphoneX ? 'margin-bottom: 84px;' : 'margin-bottom: 50px;'}}" />
 </view>
 <van-popup wx:if="{{showPopUp}}" show="{{showPopUp}}" round position="bottom" bind:close="onPopUpClose">
-    <van-picker show-toolbar toolbar-class="picker-color" loading="{{eventYearsArray==null || eventYearsArray.length == 0}}" columns="{{ eventYearsArray }}" default-index="{{ pickerDefaultSelected }}" bind:cancel="onPopUpClose" bind:confirm="onPickerConfirm" />
+    <van-picker show-toolbar toolbar-class="picker-color" loading="{{pickerColumn[0].values==null || pickerColumn[0].values == 0}}" columns="{{ pickerColumn }}" bind:cancel="onPopUpClose" bind:confirm="onPickerConfirm" />
 </van-popup>

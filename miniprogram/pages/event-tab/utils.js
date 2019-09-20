@@ -1,4 +1,4 @@
-import { dateReplace } from '../../utils/methodList';
+import { dateReplace, monthFormat } from '../../utils/methodList';
 /* API 列表 */
 // 1. /status                          h获取到max_season赛季
 
@@ -8,15 +8,20 @@ var utils = {
   // 获取20个赛事，追加式添加
   getEvents: function(that, index) {
     var db = wx.cloud.database();
-    var _ = db.command; // 数据库高级功能command
     var defaultEventArray = that.data.defaultEventArray;
-    var selectedYear = parseInt(that.data.selectedYear);
-    var gap = 20; // 单词请求为20个赛事信息
+    var selectedDate =
+      that.data.selectedYear + monthFormat(that.data.selectedMonth);
+    var gap = 20; // 单次请求为20个赛事信息
     var skip = index * gap; // 需要跳过的
+
+    console.log(selectedDate);
 
     db.collection('events')
       .where({
-        year: _.eq(selectedYear)
+        start_date: db.RegExp({
+          regexp: selectedDate,
+          options: 'i'
+        })
       })
       .skip(skip)
       .limit(gap)
@@ -41,7 +46,8 @@ var utils = {
         that.setData({
           defaultEventArray: defaultEventArray,
           scrollIndex: index, // 每次加载完都更新一次index值
-          lastLoadFinish: true // 设置当前懒加载完成
+          lastLoadFinish: true, // 设置当前懒加载完成
+          hasNextEvent : false
         });
       })
       .catch(err => {
@@ -53,6 +59,10 @@ var utils = {
   reachBottom: function(that) {
     var lastLoadFinish = that.data.lastLoadFinish;
     var index = that.data.scrollIndex;
+
+    that.setData({
+        hasNextEvent : true
+    })
 
     if (lastLoadFinish) {
       index += 1;
@@ -143,13 +153,25 @@ var utils = {
   },
 
   pickerConfirm: function(event, that) {
-    var selectedYear = event.detail.value;
+    var selectedYear = event.detail.value[0];
+    var selectedMonth = event.detail.index[1] + 1;
+
+    var selectedYearIndex = event.detail.index[0];
+    var selectedMonthIndex = event.detail.index[1];
+
+    var pickerColumn = that.data.pickerColumn;
     var index = 0;
+
+    // 更新pickerColumn的默认选择
+    pickerColumn[0].defaultIndex = selectedYearIndex;
+    pickerColumn[1].defaultIndex = selectedMonthIndex;
 
     that.setData({
       scrollIndex: index, // 重新选择年份后清空之前的index
       defaultEventArray: [], // 重新选择年份后清空之前的eventinfo
+      pickerColumn: pickerColumn,
       selectedYear: selectedYear,
+      selectedMonth: selectedMonth,
       showPopUp: false // confirm后设置弹出层为关闭状态
     });
 
@@ -164,17 +186,26 @@ var utils = {
       var { current_season, max_season } = res; // 获取当前赛季年份和最大赛季年份
       var start_year = 1992; // 比赛成立年份
       var index = that.data.scrollIndex;
+      var pickerColumn = that.data.pickerColumn;
+      var curDate = new Date();
 
       // 创建picker显示数组，倒叙
       for (var i = max_season; i >= start_year; i--) {
         eventYearsArray.push(i); // 添加赛事年份数组
       }
 
+      //   更新年份列
+      pickerColumn[0].values = eventYearsArray;
+      pickerColumn[0].defaultIndex = max_season - current_season; // 让picker默认选择当前年份的索引而不是最大赛季年份
+
+      //   更新月份列
+      pickerColumn[1].defaultIndex = curDate.getMonth(); // 默认选择当前月份的赛事
+
       that.setData({
         isIphoneX: app.data.isIphoneX,
-        eventYearsArray: eventYearsArray,
-        pickerDefaultSelected: max_season - current_season, // 让picker默认选择当前年份的索引而不是最大赛季年份
-        selectedYear: current_season // 默认选择为当前年份
+        pickerColumn: pickerColumn,
+        selectedYear: current_season, // 默认选择为当前年份
+        selectedMonth: curDate.getMonth() + 1 // 默认选择为当前月份
       });
 
       this.getEvents(that, index);
