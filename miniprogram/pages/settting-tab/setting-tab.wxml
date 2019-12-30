@@ -2,7 +2,7 @@
     <view class="index">
         <image class="logo" src="/images/icon.png" />
         <view class="col">
-            <text class="title margin">Towero <text class="version">v0.7.2</text></text>
+            <text class="title margin">Towero <text class="version">v0.7.5</text></text>
             <text class="version margin">A FRC game information app </text>
         </view>
     </view>

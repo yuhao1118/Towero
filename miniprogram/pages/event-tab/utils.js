@@ -1,6 +1,6 @@
 import { dateReplace, monthFormat } from '../../utils/methodList';
 /* API 列表 */
-// 1. /status                          h获取到max_season赛季
+// 1. /status                          获取到max_season赛季
 
 var app = getApp();
 
@@ -199,13 +199,15 @@ var utils = {
       pickerColumn[0].defaultIndex = max_season - current_season; // 让picker默认选择当前年份的索引而不是最大赛季年份
 
       //   更新月份列
-      pickerColumn[1].defaultIndex = curDate.getMonth(); // 默认选择当前月份的赛事
+      //   默认选择当前月份的赛事, 否则为下一年2月比赛
+      pickerColumn[1].defaultIndex = current_season != curDate.getFullYear() ? 1 : curDate.getMonth();
+      var selectedMonth = current_season != curDate.getFullYear() ? 2 : curDate.getMonth() + 1;
 
       that.setData({
         isIphoneX: app.data.isIphoneX,
         pickerColumn: pickerColumn,
         selectedYear: current_season, // 默认选择为当前年份
-        selectedMonth: curDate.getMonth() + 1 // 默认选择为当前月份
+        selectedMonth: selectedMonth // 默认选择为当前月份
       });
 
       this.getEvents(that, index);
